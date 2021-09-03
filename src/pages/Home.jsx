@@ -16,7 +16,7 @@ const Home = () => {
   
   return (
     <div>
-      { count }
+      <p className="text-lg">{ count }</p>
     </div>
   );
 }

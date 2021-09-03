@@ -3,7 +3,11 @@ import React from 'react';
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div>
+      <form onSubmit={() => console.log('test')}>
+        <input />
+      </form>
+    </div>
   );
 }
 

@@ -6,8 +6,11 @@
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.2.0",
+    "@snowpack/plugin-postcss": "^1.4.3",
     "@snowpack/plugin-react-refresh": "^2.5.0",
-    "snowpack": "^3.3.7"
+    "postcss": "^8.3.6",
+    "snowpack": "^3.3.7",
+    "tailwindcss": "^2.2.9"
   },
   "dependencies": {
     "react": "^17.0.2",
