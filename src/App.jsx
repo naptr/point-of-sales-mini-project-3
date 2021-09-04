@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import React from 'react';
 
-import { PrivateRoutes, PublicRoutes } from '@app/routes';
+import Routes from './Routes';
+
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  
   return (
-    <BrowserRouter>
-        {
-          loggedIn ? <PrivateRoutes /> : <PublicRoutes />
-        }
-        <Link to="/not-found">
-          Not found
-        </Link>
-    </BrowserRouter>
+    <Routes />
   );
 }
 

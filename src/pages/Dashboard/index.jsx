@@ -1,11 +1,10 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 
 const Dashboard = () => {
-  return (
+  return ( 
     <div>
       <h2>Dashboard</h2>
-    </div>
+    </div> 
   );
 }
 
