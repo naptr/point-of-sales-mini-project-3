@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   mode: 'jit',
   purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
@@ -12,5 +14,14 @@ module.exports = {
     extends: {
       fill: ['hover']
     }
-  }
+  },
+  plugins: [
+    plugin(({ addVariant, e }) => {
+      addVariant('required', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`required${separator}${className}`)}:required`
+        })
+      })
+    })
+  ]
 }

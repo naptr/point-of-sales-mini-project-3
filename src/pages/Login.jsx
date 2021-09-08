@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useHistory, Link } from 'react-router-dom';
+import { useSnapshot } from 'valtio';
 
 import NeatLogo from '@app/components/Logo/NeatLogo';
+import { Loader } from '@app/components/Loader';
 
 import { auth } from '@app/api/auth';
+import { store } from '@app/utils/state-management/proxy';
+import { setLocalStorage, returnObjectKey, isLogin } from '@app/utils/utils'; 
+
+import '@app/assets/css/Login/custom-style.css';
 
 
 const Login = ({ loggedIn }) => {
@@ -12,39 +18,85 @@ const Login = ({ loggedIn }) => {
   const [invalidCredentials, setInvalidCredentials] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const browserRoute = useHistory();
+
+  /**
+   * Handler
+   */
   const handleFormSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+
+    setLoading(true);
     const result = await auth(username, password);
     
-    
-    if (result.status == 200) {
-      console.log('success');
-    } else {
-      setInvalidCredentials(true);
+    try {
+      if (result.status == 200) {
+        store.logged_in = true;
+  
+        const localStorageValue = {
+          logged_in: {
+            name: returnObjectKey(result.data, 0),
+            value: result.data.logged_in
+          },
+          token: {
+            name: returnObjectKey(result.data, 1),
+            value: result.data.token
+          },
+        }
+  
+        setLocalStorage(localStorageValue).then(() => console.log(browserRoute));
+        // console.log(browserRoute);
+      } else {
+          setInvalidCredentials(true);
+      }
+    } catch (error) {
+      alert('error occured');
     }
 
     setLoading(false);
   }
 
-  return loggedIn ? ( 
+  const handleInputChange = (e) => {
+    const { target } = e;
+    switch (target.name) {
+      case 'username':
+        setUsername(target.value);
+        break;
+      case 'password':
+        setPassword(target.value);
+        break;
+      default:
+        throw new Error
+    }
+  }
+
+  const handleInvalidCred = () => {
+    setInvalidCredentials(false)
+  }
+
+  /**
+   * Component Lifecycle
+   */
+
+  return isLogin(loggedIn) ? ( 
     <Redirect to='/' /> 
   ) : (
-    <div id="login-page" className="h-full w-full flex items-center justify-center py-20 bg-gray-800">
+    <div id="login-page" className="h-full w-full flex items-center justify-center py-20 bg-gray-800 relative">
       {
-        loading && <h1>Loading</h1>
+        loading && <LoginLoader />
       }
-      <div id="login-component-wrapper" className="flex flex-col items-center space-y-12 h-full justify-center">
+      <div id="login-component-wrapper" className="flex flex-col items-center space-y-12 h-full justify-center w-1/3 px-14">
         <div id="logo" className="flex items-center justify-center">
           <NeatLogo height='3.5rem' color='#fff' />
         </div>
-        <div id="login-form" className="p-4 font-body flex flex-col space-y-6">
-          <form onSubmit={handleFormSubmit} className="flex flex-col items-center justify-center space-y-12">
-            <div id="input-wrapper" className="flex flex-col items-center justify-center space-y-6">
-              <input type="text" id="username-input" value={username} { ...invalidCredentials && {onClick: () => setInvalidCredentials(false)} } onChange={(e) => setUsername(e.target.value)} placeholder="Username" className={`py-2.5 px-2.5 w-80 bg-gray-800 border-2 focus:outline-none focus:border-purple-500 ${invalidCredentials ? 'border-red-500' : 'border-gray-700'} placeholder-gray-700 text-white rounded transition-colors duration-500`} />
-              <input type="password" id="password-input" value={password} {...invalidCredentials && { onClick: () => setInvalidCredentials(false) }} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className={`py-2.5 px-2.5 w-80 bg-gray-800 border-2 focus:outline-none focus:border-purple-500 ${invalidCredentials ? 'border-red-500' : 'border-gray-700'} placeholder-gray-700 text-white rounded transition-colors duration-500`} />
+        <div id="login-form" className="p-4 font-body flex flex-col w-full space-y-6 w-full">
+          <form onSubmit={handleFormSubmit} className="flex flex-col items-center justify-center space-y-6 w-full">
+            <div id="input-wrapper" className="flex flex-col items-start justify-center space-y-6 w-full">
+              <input name="username" type="text" required id="username-input" value={username} { ...invalidCredentials && {onClick: handleInvalidCred} } onChange={handleInputChange} placeholder="Username" className={`required-input py-2.5 px-2.5 w-full required:bg-gray-800 border-2 focus:outline-none focus:border-purple-500 ${invalidCredentials ? 'border-red-500' : 'border-gray-700'} placeholder-gray-700 text-white rounded transition-colors duration-500`} />
+              <input name="password" type="password" required id="password-input" value={password} {...invalidCredentials && { onClick: handleInvalidCred }} onChange={handleInputChange} placeholder="Password" className={`required-input py-2.5 px-2.5 w-full required:bg-gray-800 border-2 focus:outline-none focus:border-purple-500 ${invalidCredentials ? 'border-red-500' : 'border-gray-700'} placeholder-gray-700 text-white rounded transition-colors duration-500`} />
+              <p id="warning-message" className={`${invalidCredentials ? 'visible text-sm text-red-500 font-body' : 'invisible text-sm'} warning-message`}>Invalid Credentials, Please check your username and password.</p>
             </div>
-            <input type="submit" id="submit-button" value="SIGN IN" className="cursor-pointer tracking-widest py-3 px-2.5 w-80 bg-purple-500 rounded text-white font-body hover:bg-purple-600 transition-colors duration-300" />
+            <input type="submit" id="submit-button" value="SIGN IN" className="cursor-pointer tracking-widest py-3 px-2.5 w-full bg-purple-500 rounded text-white font-body hover:bg-purple-600 transition-colors duration-300" />
           </form>
           <div id="forgot-password-wrapper">
             <Link to="#" className="text-gray-700 hover:text-purple-500 transition-colors duration-300">Forgot your password</Link>
@@ -56,3 +108,11 @@ const Login = ({ loggedIn }) => {
 }
 
 export default Login;
+
+const LoginLoader = () => {
+  return (
+    <div id="login-loader" className="h-1/2 w-1/2 absolute z-50 flex items-center justify-center bg-gray-800">
+      <Loader loader="BounceLoader" size={60} color="#8B5CF6" />
+    </div>
+  )
+}

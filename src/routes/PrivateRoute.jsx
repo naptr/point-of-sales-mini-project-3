@@ -1,11 +1,10 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 
-import { LOGGED_IN_TRUE, LOGGED_IN_FALSE } from '@app/utils/temporary-utils';
+import { isLogin } from '@app/utils/utils';
 
 
-export const PrivateRoute = (props) => {
-  const loggedIn = LOGGED_IN_FALSE;
+export const PrivateRoute = ({ path, loggedIn, children }) => {
 
-  return loggedIn ? ( <Route {...props} /> ) : ( <Redirect to='/login' /> );
+  return isLogin(loggedIn) ? ( <Route path={path}>{children}</Route> ) : ( <Redirect to='/login' /> );
 }

@@ -8,7 +8,6 @@ import ProductList from './ProductList';
 const Dashboard = () => {
   return (
     <>
-      
       <Link to='/dashboard/product-list'>Product List</Link>
       <Link to='/dashboard'>Dashboard</Link>
       <Switch>
