@@ -1,0 +1,25 @@
+.test {
+  background-color: #1F2937;
+  z-index: 99;
+}
+
+.appear {
+  opacity: 0;
+  animation: forwards appearAnimation 500ms;
+}
+
+.disappear {
+  animation: disappearAnimation 500ms forwards;
+}
+
+@keyframes appearAnimation {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes disappearAnimation {
+  100% {
+    opacity: 0;
+  }
+}

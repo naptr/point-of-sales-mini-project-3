@@ -5,8 +5,8 @@ import Dashboard from '@app/pages/Dashboard';
 import Login from '@app/pages/Login';
 import Page404 from '@app/pages/Page404';
 
-import { PrivateRoute } from './routes/index';
-
+import { PrivateRoute } from '@app/routes/index';
+import { LOGGED_IN_FALSE, LOGGED_IN_TRUE } from './utils/temporary-utils';
 
 const Base = ({ loggedIn }) => {
   return <Redirect to={`${ loggedIn ? '/dashboard' : '/login' }`} />;
@@ -16,14 +16,14 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <Route path="/login">
-          <Login loggedIn={false} />
+        <PrivateRoute path='/dashboard' component={Dashboard} />
+        <Route path='/login'>
+          <Login loggedIn={LOGGED_IN_FALSE} />
         </Route>
-        <Route exact path="/">
-          <Base loggedIn={false} />
+        <Route exact path='/'>
+          <Base loggedIn={LOGGED_IN_FALSE} />
         </Route>
-        <Route path="*">
+        <Route path='*'>
           <Page404 />
         </Route>
       </Switch>
