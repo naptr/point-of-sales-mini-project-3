@@ -1,17 +1,13 @@
 import { Neat } from './axios';
 
 
-export const auth = async (username, password) => {
+export const auth = async (url, data, config) => {
   try {
-    const result_data = await Neat.post('/login', {
-
-      'username': username,
-      'password': password
-    }, { timeout: 5000 });
+    const result_data = await Neat.post(url, data, config);
 
     return result_data;
   } catch (error) {
-
+    
     return error.response;
   }
 }

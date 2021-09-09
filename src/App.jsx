@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Routes from './Routes';
-import { getLocalStorageItem } from './utils/utils';
+import { getLocalStorageItem } from '@app/utils/storage-utils';
 
 
 const App = () => {

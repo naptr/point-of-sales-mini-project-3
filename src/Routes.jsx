@@ -6,7 +6,7 @@ import Login from '@app/pages/Login';
 import Page404 from '@app/pages/Page404';
 
 import { PrivateRoute } from '@app/routes/index';
-import { isLogin } from '@app/utils/utils';
+import { isLogin } from '@app/utils/auth-utils';
 
 
 const Base = ({ loggedIn }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect, useHistory } from 'react-router-dom';
 
-import { isLogin } from '@app/utils/utils';
+import { isLogin } from '@app/utils/auth-utils';
 
 
 export const PrivateRoute = ({ path, loggedIn, children }) => {

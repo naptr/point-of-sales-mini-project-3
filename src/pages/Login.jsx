@@ -7,7 +7,9 @@ import { Loader } from '@app/components/Loader';
 
 import { auth } from '@app/api/auth';
 import { store } from '@app/utils/state-management/proxy';
-import { setLocalStorage, returnObjectKey, isLogin } from '@app/utils/utils'; 
+import { returnObjectKey } from '@app/utils/utils';
+import { isLogin } from '@app/utils/auth-utils';
+import { setLocalStorage } from '@app/utils/storage-utils';
 
 import '@app/assets/css/Login/custom-style.css';
 
@@ -18,42 +20,41 @@ const Login = ({ loggedIn }) => {
   const [invalidCredentials, setInvalidCredentials] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const browserRoute = useHistory();
-
   /**
    * Handler
    */
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    const result = await auth(username, password);
-    
-    try {
-      if (result.status == 200) {
-        store.logged_in = true;
-  
-        const localStorageValue = {
-          logged_in: {
-            name: returnObjectKey(result.data, 0),
-            value: result.data.logged_in
-          },
-          token: {
-            name: returnObjectKey(result.data, 1),
-            value: result.data.token
-          },
-        }
-  
-        setLocalStorage(localStorageValue).then(() => console.log(browserRoute));
-        // console.log(browserRoute);
-      } else {
-          setInvalidCredentials(true);
-      }
-    } catch (error) {
-      alert('error occured');
+
+    const auth_data = {
+      'username': username,
+      'password': password
     }
 
-    setLoading(false);
+    const result = await auth('/login', auth_data);
+
+    const localStorageValue = {
+      logged_in: {
+        name: returnObjectKey(result.data, 0),
+        value: result.data.logged_in
+      },
+      token: {
+        name: returnObjectKey(result.data, 1),
+        value: result.data.token
+      },
+    }
+
+    if (result.status == 200) {
+      store.logged_in = true;
+
+      setLocalStorage(localStorageValue);
+
+      window.location.reload();
+    } else {
+      setInvalidCredentials(true);
+      setLoading(false);
+    }
   }
 
   const handleInputChange = (e) => {
@@ -87,7 +88,7 @@ const Login = ({ loggedIn }) => {
       }
       <div id="login-component-wrapper" className="flex flex-col items-center space-y-12 h-full justify-center w-1/3 px-14">
         <div id="logo" className="flex items-center justify-center">
-          <NeatLogo height='3.5rem' color='#fff' />
+          <NeatLogo height='3.5rem' color='#fff' leafSize="2.5rem" />
         </div>
         <div id="login-form" className="p-4 font-body flex flex-col w-full space-y-6 w-full">
           <form onSubmit={handleFormSubmit} className="flex flex-col items-center justify-center space-y-6 w-full">

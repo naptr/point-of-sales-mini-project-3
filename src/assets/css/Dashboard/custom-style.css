@@ -1,12 +1,11 @@
-.test {
+.greeting {
   background-color: #1F2937;
-  z-index: 99;
 }
 
 .appear {
   opacity: 0;
-  -webkit-animation: forwards appearAnimation 500ms;
-          animation: forwards appearAnimation 500ms;
+  -webkit-animation: appearAnimation 500ms forwards;
+          animation: appearAnimation 500ms forwards;
 }
 
 .disappear {
@@ -17,24 +16,28 @@
 @-webkit-keyframes appearAnimation {
   100% {
     opacity: 1;
+    z-index: 99;
   }
 }
 
 @keyframes appearAnimation {
   100% {
     opacity: 1;
+    z-index: 99;
   }
 }
 
 @-webkit-keyframes disappearAnimation {
   100% {
     opacity: 0;
+    z-index: -1;
   }
 }
 
 @keyframes disappearAnimation {
   100% {
     opacity: 0;
+    z-index: -1;
   }
 }
 /*# sourceMappingURL=custom-style.css.map */
