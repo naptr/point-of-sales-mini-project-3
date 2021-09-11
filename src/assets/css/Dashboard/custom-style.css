@@ -9,6 +9,8 @@
 }
 
 .disappear {
+  top: 0;
+  left: 0;
   -webkit-animation: disappearAnimation 500ms forwards;
           animation: disappearAnimation 500ms forwards;
 }

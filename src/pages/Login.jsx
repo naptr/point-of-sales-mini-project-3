@@ -7,7 +7,7 @@ import { Loader } from '@app/components/Loader';
 
 import { auth } from '@app/api/auth';
 import { store } from '@app/utils/state-management/proxy';
-import { returnObjectKey } from '@app/utils/utils';
+import { returnObjectKey, REM } from '@app/utils/utils';
 import { isLogin } from '@app/utils/auth-utils';
 import { setLocalStorage } from '@app/utils/storage-utils';
 
@@ -88,7 +88,7 @@ const Login = ({ loggedIn }) => {
       }
       <div id="login-component-wrapper" className="flex flex-col items-center space-y-12 h-full justify-center w-1/3 px-14">
         <div id="logo" className="flex items-center justify-center">
-          <NeatLogo height='3.5rem' color='#fff' leafSize="2.5rem" />
+          <NeatLogo height='3.5rem' color='#fff' leafSize={`${2.5*REM}`} />
         </div>
         <div id="login-form" className="p-4 font-body flex flex-col w-full space-y-6 w-full">
           <form onSubmit={handleFormSubmit} className="flex flex-col items-center justify-center space-y-6 w-full">

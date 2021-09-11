@@ -8,11 +8,19 @@ module.exports = {
       'logo': ['Dancing Script'],
       'caption': ['"Open Sans"', 'Nunito', 'sans-serif'],
       'body': ['"Open Sans"', 'Nunito', 'system-ui', 'sans-serif'],
+    },
+    extend: {
+      translate: {
+        '17.5': '4.375rem'
+      },
+      transitionDuration: {
+        '400': '400ms'
+      }
     }
   },
   variants: {
     extends: {
-      fill: ['hover']
+      fill: ['hover'],
     }
   },
   plugins: [
