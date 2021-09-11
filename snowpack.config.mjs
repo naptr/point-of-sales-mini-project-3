@@ -6,7 +6,8 @@ export default {
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
-    '@snowpack/plugin-dotenv'
+    '@snowpack/plugin-dotenv',
+    '@snowpack/plugin-postcss'
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
@@ -26,6 +27,7 @@ export default {
   devOptions: {
     port: 3000,
     open: 'none',
+    tailwindConfig: './tailwind.config.js',
   },
   buildOptions: {
     /* ... */

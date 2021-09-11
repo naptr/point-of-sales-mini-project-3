@@ -1,0 +1,45 @@
+.greeting {
+  background-color: #1F2937;
+}
+
+.appear {
+  opacity: 0;
+  -webkit-animation: appearAnimation 500ms forwards;
+          animation: appearAnimation 500ms forwards;
+}
+
+.disappear {
+  top: 0;
+  left: 0;
+  -webkit-animation: disappearAnimation 500ms forwards;
+          animation: disappearAnimation 500ms forwards;
+}
+
+@-webkit-keyframes appearAnimation {
+  100% {
+    opacity: 1;
+    z-index: 99;
+  }
+}
+
+@keyframes appearAnimation {
+  100% {
+    opacity: 1;
+    z-index: 99;
+  }
+}
+
+@-webkit-keyframes disappearAnimation {
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+@keyframes disappearAnimation {
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+/*# sourceMappingURL=custom-style.css.map */

@@ -1,0 +1,28 @@
+.greeting {
+  background-color: #1F2937;
+}
+
+.appear {
+  opacity: 0;
+  animation: appearAnimation 500ms forwards;
+}
+
+.disappear {
+  top: 0;
+  left: 0;
+  animation: disappearAnimation 500ms forwards;
+}
+
+@keyframes appearAnimation {
+  100% {
+    opacity: 1;
+    z-index: 99;
+  }
+}
+
+@keyframes disappearAnimation {
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}

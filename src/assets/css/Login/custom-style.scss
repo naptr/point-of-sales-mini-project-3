@@ -1,0 +1,18 @@
+.required-input {
+  &:required {
+    &:valid {
+      color: #8B5CF6;
+    }
+
+    &:user-invalid {
+      border-color: #EF4444;
+      
+      #warning-message {
+        visibility: visible;
+        font-size: 0.875rem;
+        color: #EF4444;
+        font-family: 'Open Sans', 'Nunito', sans-serif;
+      }
+    }
+  }
+}

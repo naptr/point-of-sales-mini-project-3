@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 
-import { PrivateRoutes, PublicRoutes } from '@app/routes';
+import Routes from './Routes';
+import { getLocalStorageItem } from '@app/utils/storage-utils';
+
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  
+  const loggedIn = getLocalStorageItem('logged_in');
+
   return (
-    <BrowserRouter>
-        {
-          loggedIn ? <PrivateRoutes /> : <PublicRoutes />
-        }
-        <Link to="/not-found">
-          Not found
-        </Link>
-    </BrowserRouter>
+    <Routes loggedIn={loggedIn} />
   );
 }
 
