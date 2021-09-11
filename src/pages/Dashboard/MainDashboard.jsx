@@ -6,7 +6,7 @@ import { store } from '@app/utils/state-management/proxy';
 
 const MainDashboard = () => {
   return (
-    <div className="ml-14">
+    <div className="">
       <h1>Main Dashboard</h1>
     </div>
   )

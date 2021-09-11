@@ -24,10 +24,10 @@ const Sidebar = () => {
     },
     {
       id: 2,
-      name: 'master_data',
-      text: 'Master Data',
+      name: 'product_data',
+      text: 'Product Data',
       obj: {
-        path: `${store.dashboard_url}/user-data`,
+        path: `${store.dashboard_url}/product-data`,
         state: ''
       }
     },
@@ -36,7 +36,7 @@ const Sidebar = () => {
       name: 'user_data',
       text: 'User Data',
       obj: {
-        path: `${store.dashboard_url}/master-data`,
+        path: `${store.dashboard_url}/user-data`,
         state: ''
       }  
     },

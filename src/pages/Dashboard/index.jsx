@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, Route, Switch, useLocation } from 'react-router-dom';
 
 import MainDashboard from './MainDashboard';
-import ProductList from './ProductList';
+import { REM } from '@app/utils/utils';
 import NeatLogo from '@app/components/Logo/NeatLogo';
 import Sidebar from '@app/components/Dashboard/Sidebar';
+import ProductData from './Pages/ProductData';
 
-import { REM } from '@app/utils/utils';
 
 
 const Dashboard = () => {
@@ -44,13 +44,25 @@ const DashboardRoute = () => {
   return (
     <div id="dashboard-route" className="h-full flex flex-row relative">
       <Sidebar />
-      <div id="router-view" className="flex-grow">
+      <div id="router-view" className="flex-grow pl-14">
         <Switch>
           <Route path='/dashboard' exact>
             <MainDashboard />
           </Route>
-          <Route path='/dashboard/product-list'>
-            <ProductList />
+          <Route path='/dashboard/product-data'>
+            <ProductData />
+          </Route>
+          <Route path='/dashboard/user-data'>
+
+          </Route>
+          <Route path='/dashboard/search'>
+
+          </Route>
+          <Route path='/dashboard/transactions'>
+
+          </Route>
+          <Route path='/dashboard/reports'>
+
           </Route>
         </Switch>
       </div>
