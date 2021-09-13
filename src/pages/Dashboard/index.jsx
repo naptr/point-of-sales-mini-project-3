@@ -10,6 +10,9 @@ import MainDashboard from './MainDashboard';
 import ProductData from './Pages/ProductData';
 import UserData from './Pages/UserData';
 import Settings from './Pages/Setting';
+import Transactions from './Pages/Transactions';
+import Search from './Pages/Search';
+import Reports from './Pages/Reports';
 
 // import { REM } from '@app/utils/utils';
 
@@ -56,12 +59,13 @@ const DashboardRoute = () => {
             <ProductData />
           </Route>
           <Route path='/dashboard/search'>
-
+            <Search />
           </Route>
           <Route path='/dashboard/transactions'>
-
+            <Transactions />
           </Route>
           <Route path='/dashboard/reports'>
+            <Reports />
           </Route>
           <Route path='/dashboard/settings'>
             <Settings />
