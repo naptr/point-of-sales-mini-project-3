@@ -62,7 +62,6 @@ const DashboardRoute = () => {
 
           </Route>
           <Route path='/dashboard/reports'>
-
           </Route>
           <Route path='/dashboard/settings'>
             <Settings />
