@@ -82,7 +82,7 @@ const Login = ({ loggedIn }) => {
   return isLogin(loggedIn) ? ( 
     <Redirect to='/' /> 
   ) : (
-    <div id="login-page" className="h-full w-full flex items-center justify-center py-20 bg-gray-800 relative">
+    <div id="login-page" className="h-screen flex items-center justify-center py-20 bg-gray-800 relative">
       {
         loading && <LoginLoader />
       }
@@ -90,7 +90,7 @@ const Login = ({ loggedIn }) => {
         <div id="logo" className="flex items-center justify-center">
           <NeatLogo height='3.5rem' color='#fff' leafSize={`${2.5*REM}`} />
         </div>
-        <div id="login-form" className="p-4 font-body flex flex-col w-full space-y-6 w-full">
+        <div id="login-form" className="p-4 font-body flex flex-col w-k space-y-6 w-full">
           <form onSubmit={handleFormSubmit} className="flex flex-col items-center justify-center space-y-6 w-full">
             <div id="input-wrapper" className="flex flex-col items-start justify-center space-y-6 w-full">
               <input name="username" type="text" required id="username-input" value={username} { ...invalidCredentials && {onClick: handleInvalidCred} } onChange={handleInputChange} placeholder="Username" className={`required-input py-2.5 px-2.5 w-full required:bg-gray-800 border-2 focus:outline-none focus:border-purple-500 ${invalidCredentials ? 'border-red-500' : 'border-gray-700'} placeholder-gray-700 text-white rounded transition-colors duration-500`} />

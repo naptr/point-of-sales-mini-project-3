@@ -24,12 +24,14 @@ const ProductData = () => {
   useEffect(() => getProductData(), []);
 
   return (
-    <>
-      <h1>Product Data</h1>
-      {
-        productData && <pre>{JSON.stringify(productData, null, 2)}</pre>
-      }
-    </>
+    <div className="overflow-scroll overflow-x-hidden h-full">
+      <div className="">
+        <h1>Product Data</h1>
+        {
+          productData && <pre>{JSON.stringify(productData, null, 2)}</pre>
+        }
+      </div>
+    </div>
   );
 }
 
