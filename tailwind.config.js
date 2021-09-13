@@ -15,7 +15,7 @@ module.exports = {
       },
       transitionDuration: {
         '400': '400ms'
-      }
+      },
     }
   },
   variants: {
