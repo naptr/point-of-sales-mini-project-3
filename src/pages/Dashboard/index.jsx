@@ -27,7 +27,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="h-full relative">
+    <div className="w-full h-full relative">
       {
         appearSmth ? null : <DashboardRoute />
       }
@@ -40,9 +40,9 @@ export default Dashboard;
 
 const DashboardRoute = () => {
   return (
-    <div id="dashboard-route" className="h-full flex flex-row relative">
+    <div id="dashboard-route" className="w-full h-full flex flex-row relative">
       <Sidebar />
-      <div id="router-view" className="flex-grow pl-20 pr-6 py-6">
+      <div id="router-view" className="pl-20 pr-6 pb-6 bg-white w-full flex flex-col">
         <Topbar />
         <Switch>
           <Route path='/dashboard' exact>

@@ -62,3 +62,12 @@ export const sidebarItem = [
     }
   }
 ];
+
+export const settingsObject = {
+  path: `${store.dashboard_url}/settings`,
+  state: {
+    id: 1,
+    name: 'settings',
+    textContent: 'Settings'
+  }
+}
