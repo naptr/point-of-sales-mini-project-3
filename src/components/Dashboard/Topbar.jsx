@@ -13,12 +13,14 @@ const Topbar = () => {
 
   return (
     <div className={`bg-white h-18 flex items-center w-full flex items-center justify-between`}>
-      {
-        location.state?.textContent
-      }
-      {
-        location.state === undefined && 'Dashboard'
-      }
+      <h1 className="font-title font-bold italic text-3xl text-purple-500">
+        {
+          location.state?.textContent
+        }
+        {
+          location.state === undefined && 'Dashboard'
+        }
+      </h1>
       <button onClick={handleLogoutTest}>Logout</button>
     </div>
   );

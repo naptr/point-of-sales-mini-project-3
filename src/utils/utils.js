@@ -71,3 +71,14 @@ export const settingsObject = {
     textContent: 'Settings'
   }
 }
+
+export const product_data = [
+  {
+    id: 1,
+    name: 'product-list'
+  },
+  {
+    id: 2,
+    name: ''
+  }
+]
