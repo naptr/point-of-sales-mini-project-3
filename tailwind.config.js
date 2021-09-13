@@ -5,8 +5,8 @@ module.exports = {
   purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
   theme: {
     fontFamily: {
-      'logo': ['Dancing Script'],
       'caption': ['"Open Sans"', 'Nunito', 'sans-serif'],
+      'title': ['Philosopher', '"Open Sans"', 'Nunito', 'system-ui', 'sans-serif'],
       'body': ['"Open Sans"', 'Nunito', 'system-ui', 'sans-serif'],
     },
     extend: {
@@ -16,6 +16,9 @@ module.exports = {
       transitionDuration: {
         '400': '400ms'
       },
+      spacing: {
+        '18': '4.5rem',
+      }
     }
   },
   variants: {

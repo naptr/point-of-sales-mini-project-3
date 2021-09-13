@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSnapshot } from 'valtio';
 
 import '@app/assets/css/Dashboard/custom-style.css';
-import { store } from '@app/utils/state-management/proxy';
 
 const MainDashboard = () => {
   return (
-    <div className="">
+    <div className="w-full flex-grow flex items-center justify-center">
       <h1>Main Dashboard</h1>
     </div>
   )

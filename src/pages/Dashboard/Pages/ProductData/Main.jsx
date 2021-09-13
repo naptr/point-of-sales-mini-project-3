@@ -4,7 +4,7 @@ import { dashboard } from '@app/api/dashboard';
 const token = localStorage.getItem('token');
 
 
-const ProductData = () => {
+const Main = () => {
   const [productData, setProductData] = useState();
 
   const getProductData = async () => {
@@ -15,7 +15,7 @@ const ProductData = () => {
         }
       })
 
-      setProductData(result);
+      setProductData(result.data);
     } catch (err) {
       throw new Error(err);
     }
@@ -24,15 +24,13 @@ const ProductData = () => {
   useEffect(() => getProductData(), []);
 
   return (
-    <div className="overflow-scroll overflow-x-hidden h-full">
-      <div className="">
-        <h1>Product Data</h1>
-        {
-          productData && <pre>{JSON.stringify(productData, null, 2)}</pre>
-        }
-      </div>
+    <div className="">
+      <h1>Product Data</h1>
+      {
+        productData && <pre className="text-xs">{JSON.stringify(productData.data, null, 2)}</pre>
+      }
     </div>
   );
 }
 
-export default ProductData;
+export default Main;
