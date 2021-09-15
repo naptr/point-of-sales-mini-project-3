@@ -2,12 +2,20 @@ import { dashboard } from './apis';
 
 const token = localStorage.getItem('token');
 
-export const getProductsData = async () => {
-  const products = await dashboard.get('/products', {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
+export const getProducts = async () => {
+  const products = await dashboard.get('/products');
 
-  return products.data;
+  return products;
+}
+
+export const getSuppliers = async () => {
+  const suppliers = await dashboard.get('/suppliers');
+
+  return suppliers;
+}
+
+export const getCategories = async () => {
+  const categories = await dashboard.get('/categories');
+
+  return categories;
 }
