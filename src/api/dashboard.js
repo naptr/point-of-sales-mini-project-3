@@ -1,11 +1,13 @@
-import { NeatAPI } from "./axios";
+import { dashboard } from './apis';
 
-export const dashboard = async (url, method, config) => {
-  try {
-    const result = await NeatAPI[method](url, config);
-    
-    return result;
-  } catch (error) {
-    return error
-  }
+const token = localStorage.getItem('token');
+
+export const getProductsData = async () => {
+  const products = await dashboard.get('/products', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+
+  return products.data;
 }

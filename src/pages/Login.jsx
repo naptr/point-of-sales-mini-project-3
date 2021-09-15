@@ -5,7 +5,7 @@ import { useSnapshot } from 'valtio';
 import NeatLogo from '@app/components/Logo/NeatLogo';
 import { Loader } from '@app/components/Loader';
 
-import { auth } from '@app/api/auth';
+import { auth } from '@app/api/apis';
 import { store } from '@app/utils/state-management/proxy';
 import { returnObjectKey, REM } from '@app/utils/utils';
 import { isLogin } from '@app/utils/auth-utils';
