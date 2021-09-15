@@ -31,18 +31,12 @@ const Sidebar = () => {
           <div id="items" className="w-full flex-grow h-full">
             <ul className="flex flex-col items-center space-y-6">
               {sidebarItem.map((item) => (
-                <SidebarItem key={item.state.id} item={item} size={1.75 * REM} color="#8B5CF6" active={item.path == componentLocation.pathname} hover={handleRefData} sidebarOpen={openSidebar} />
+                <SidebarItem key={item.state.id} item={item} size={1.75 * REM} color="#8B5CF6" active={componentLocation.pathname.includes(item.singlePath)} hover={handleRefData} sidebarOpen={openSidebar} />
               ))}
             </ul>
           </div>
         </div>
         <div id="bottom-items-wrapper" className="w-full flex flex-col items-center space-y-6">
-          <Link to={{
-            pathname: settingsObject.path,
-            state: settingsObject.state
-          }} className={`transition-all h-12 flex items-center justify-start static pl-2.5 w-full hover:bg-gray-700`}>
-            <SettingsIcon size={1.75 * REM} color="#8B5CF6" active={settingsObject.path == componentLocation.pathname} />
-          </Link>
           <button onClick={handleSidebarHover} className="static flex items-center justify-start pl-2.5 w-full h-12">
             <ExpandSidebarIcon size={1.75 * REM} color="#8B5CF6" active={openSidebar} />
           </button>
@@ -70,7 +64,7 @@ const SidebarItem = ({ item, size, color, active, hover, sidebarOpen }) => {
   }
 
   return (
-    <li ref={itemRef} onMouseEnter={handleMouseEnterAndLeave} onMouseLeave={handleMouseEnterAndLeave} id="item" className={` h-full w-full transition-all ease-out hover:border-l-4 hover:border-purple-500 hover:bg-gray-700 ${active ? 'border-l-4 border-purple-500' : 'border-gray-800'}`}>
+    <li ref={itemRef} onMouseEnter={handleMouseEnterAndLeave} onMouseLeave={handleMouseEnterAndLeave} id="item" className={` h-full w-full transition-all ease-out hover:border-l-4 hover:border-purple-500 hover:bg-gray-700 border-gray-800`}>
       <Link to={{
         pathname: item.path,
         state: item.state

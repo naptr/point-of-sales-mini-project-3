@@ -15,6 +15,7 @@ export const REM = 16;
 export const sidebarItem = [
   {
     path: `${store.dashboard_url}`,
+    singlePath: 'here-dashboard',
     state: {
       id: 1,
       textContent: 'Dashboard',
@@ -23,6 +24,7 @@ export const sidebarItem = [
   },
   {
     path: `${store.dashboard_url}/user-data`,
+    singlePath: '/user-data',
     state: {
       id: 2,
       name: 'user_data',
@@ -31,6 +33,7 @@ export const sidebarItem = [
   },
   {
     path: `${store.dashboard_url}/product-data`,
+    singlePath: '/product-data',
     state: {
       id: 3,
       name: 'product_data',
@@ -39,6 +42,7 @@ export const sidebarItem = [
   },
   {
     path: `${store.dashboard_url}/search`,
+    singlePath: '/search',
     state: {
       id: 4,
       name: 'search',
@@ -47,6 +51,7 @@ export const sidebarItem = [
   },
   {
     path: `${store.dashboard_url}/transactions`,
+    singlePath: '/transactions',
     state: {
       id: 5,
       name: 'transactions',
@@ -55,30 +60,37 @@ export const sidebarItem = [
   },
   {
     path: `${store.dashboard_url}/reports`,
+    singlePath: '/reports',
     state: {
       id: 6,
       name: 'reports',
       textContent: 'Reports',
     }
+  }, 
+  {
+    path: `${store.dashboard_url}/settings`,
+    singlePath: '/settings',
+    state: {
+      id: 7,
+      name: 'settings',
+      textContent: 'Settings'
+    }
   }
 ];
 
 export const settingsObject = {
-  path: `${store.dashboard_url}/settings`,
-  state: {
-    id: 1,
-    name: 'settings',
-    textContent: 'Settings'
-  }
+  
 }
 
-export const product_data = [
-  {
-    id: 1,
-    name: 'product-list'
-  },
-  {
-    id: 2,
-    name: ''
+export const matchUrl = (url) => {
+  let displayTitle = '';
+
+  for (const item of sidebarItem) {
+    if (url.includes(item.singlePath)) {
+      displayTitle = item.state.textContent;
+      // console.log(displayTitle);
+    }
   }
-]
+
+  return displayTitle;
+}
