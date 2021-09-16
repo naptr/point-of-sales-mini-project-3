@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { getProductsData } from '@app/api/dashboard';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const token = localStorage.getItem('token');
+import { product_data } from '@app/utils/utils';
 
 
 const Main = () => {
-  const [productData, setProductData] = useState();
 
   return (
-    <div className="">
-      <h1>Product Data</h1>
-      {/* {
-        productData && <pre className="text-xs">{JSON.stringify(productData.data, null, 2)}</pre>
-      } */}
+    <div id="product-data-container" className="w-full flex items-center justify-center flex-row flex-grow">
+      {product_data.map( product => <ProductDataLinkCard item={product} /> )}
     </div>
   );
+}
+
+const ProductDataLinkCard = ({ item }) => {
+  const { path, state } = item;
+
+  return (
+    <Link to={path} className="h-12">
+      <p>{ state.textContent }</p>
+    </Link>
+  )
 }
 
 export default Main;

@@ -1,9 +1,13 @@
 import { NeatAPI } from "./axios";
 
+const token = localStorage.getItem('token');
+
 /** Auth APIs */
-export const auth = async (url, data, config) => {
+const loginURL = '/login';
+
+export const auth = async (data, config) => {
   try {
-    const result_data = await NeatAPI.post(url, data, config);
+    const result_data = await NeatAPI.post(loginURL, data, config);
 
     return result_data;
   } catch (error) {
@@ -13,12 +17,17 @@ export const auth = async (url, data, config) => {
 }
 
 /** Dashboard APIs */
-const adminURL = '/admin';
 
 export const dashboard = {
   get: (url, config) => {
     try {
-      const result = NeatAPI.get(`${adminURL}${url}`, config);
+      const result = NeatAPI.get(`${url}`, {
+        ...config,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
       return result;
     } catch (error) {
       return error;
@@ -26,7 +35,12 @@ export const dashboard = {
   },
   post: (url, data, config) => {
     try {
-      const result = NeatAPI.post(`${adminURL}${url}`, data, config);
+      const result = NeatAPI.post(`${url}`, data, {
+        ...config,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       return result;
     } catch (error) {
       return error;
@@ -34,7 +48,12 @@ export const dashboard = {
   },
   put: (url, data, config) => {
     try {
-      const result = NeatAPI.put(`${adminURL}${url}`, data, config);
+      const result = NeatAPI.put(`${url}`, data, {
+        ...config,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       return result;
     } catch (error) {
       return error;
