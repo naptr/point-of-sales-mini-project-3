@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { NeatLeaf } from '@app/components/Logo/NeatLogo';
 import { Line, Fill, ExpandSidebarIcon, SettingsIcon } from '@app/components/Icons';
 
-import { REM, sidebarItem , settingsObject} from '@app/utils/utils';
+import { REM, sidebarItem } from '@app/utils/utils';
 
 
 const Sidebar = () => {

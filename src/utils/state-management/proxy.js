@@ -5,4 +5,5 @@ export const store = proxy({
   logged_in: false,
   dashboard_url: '/dashboard',
   dashboard_visited: false,
+  product_nav: false,
 })

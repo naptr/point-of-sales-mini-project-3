@@ -1,40 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useQueries } from 'react-query';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { getProducts, getSuppliers, getCategories } from '@app/api/dashboard';
+import { product_data } from '@app/utils/utils';
 
-
-const token = localStorage.getItem('token');
 
 const Main = () => {
-  // const [productData, setProductData] = useState();
-  // const [products, suppliers] = useQueries(
-  //   [
-  //     {
-  //       queryKey: 'products',
-  //       queryFn: getProducts
-  //     },
-  //     {
-  //       queryKey: 'suppliers',
-  //       queryFn: getSuppliers,
-  //     },
-  //     // {
-  //     //   queryKey: 'categories',
-  //     //   queryFn: getCategories
-  //     // }
-  //   ]
-  // )
-
-  // useEffect(() => console.log(products, suppliers), [products && suppliers]);
 
   return (
-    <div className="">
-      <h1>Product Data</h1>
-      {/* {
-        productData && <pre className="text-xs">{JSON.stringify(productData.data, null, 2)}</pre>
-      } */}
+    <div id="product-data-container" className="w-full flex items-center justify-center flex-row flex-grow">
+      {product_data.map( product => <ProductDataLinkCard item={product} /> )}
     </div>
   );
+}
+
+const ProductDataLinkCard = ({ item }) => {
+  const { path, state } = item;
+
+  return (
+    <Link to={path} className="h-12">
+      <p>{ state.textContent }</p>
+    </Link>
+  )
 }
 
 export default Main;

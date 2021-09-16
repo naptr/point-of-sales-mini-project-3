@@ -1,17 +1,20 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, useLocation } from 'react-router-dom';
 
 import Main from './Main';
 import Products from './Products';
 import Categories from './Categories';
+import ProductNav from '@app/components/Dashboard/Product/ProductNav';
 
 
 const ProductData = () => {
+  const location = useLocation();
+
   return (
     <>
-      <Link to='/dashboard/product-data/products'>Products</Link>
-      <Link to='/dashboard/product-data/categories'>Categories</Link>
-
+      {
+        (location.pathname.includes('/products') || location.pathname.includes('/categories')) && <ProductNav />
+      }
       <Switch>
         <Route exact path='/dashboard/product-data'>
           <Main />

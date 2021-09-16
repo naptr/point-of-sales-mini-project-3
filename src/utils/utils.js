@@ -8,7 +8,23 @@ export function returnObjectKey(state, idx) {
 }
 
 /**
- * Constantas
+ * Sidebar
+ *  */
+
+export const matchUrl = (url) => {
+  let displayTitle = '';
+
+  for (const item of sidebarItem) {
+    if (url.includes(item.singlePath)) {
+      displayTitle = item.state.textContent;
+    }
+  }
+
+  return displayTitle;
+}
+
+/**
+ * Objects and Contstantas
  */
 export const REM = 16;
 
@@ -78,19 +94,21 @@ export const sidebarItem = [
   }
 ];
 
-export const settingsObject = {
-  
-}
-
-export const matchUrl = (url) => {
-  let displayTitle = '';
-
-  for (const item of sidebarItem) {
-    if (url.includes(item.singlePath)) {
-      displayTitle = item.state.textContent;
-      // console.log(displayTitle);
+export const product_data = [
+  {
+    path: `${store.dashboard_url}/product-data/products`,
+    state: {
+      id: 1,
+      name: 'products',
+      textContent: 'Products'
+    }
+  },
+  {
+    path: `${store.dashboard_url}/product-data/categories`,
+    state: {
+      id: 1,
+      name: 'categories',
+      textContent: 'Categories'
     }
   }
-
-  return displayTitle;
-}
+]
