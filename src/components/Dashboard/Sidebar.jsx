@@ -68,7 +68,7 @@ const SidebarItem = ({ item, size, color, active, hover, sidebarOpen }) => {
       <Link to={{
         pathname: item.path,
         state: item.state
-      }} className={`h-12 py-2.5 flex justify-start pl-3 static items-center w-full flex-row relative`}>
+      }} className={`h-12 py-2.5 flex justify-start pl-3 items-center w-full flex-row relative`}>
         {
           <p className={`z-0 transform absolute ${sidebarOpen ? 'translate-x-11 opacity-1' : '-translate-x-12 opacity-0'} text-purple-300 transition-all duration-300 ease-out text-sm`}>{item.state.textContent}</p>
         }

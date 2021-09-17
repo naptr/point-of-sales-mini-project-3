@@ -100,15 +100,44 @@ export const product_data = [
     state: {
       id: 1,
       name: 'products',
-      textContent: 'Products'
+      textContent: 'Products',
+      description: `
+        This is Description of Products,
+        Place where you store your products list, and where you can find all of your products
+      `
     }
   },
   {
     path: `${store.dashboard_url}/product-data/categories`,
     state: {
-      id: 1,
+      id: 2,
       name: 'categories',
-      textContent: 'Categories'
+      textContent: 'Categories',
+      description: `
+        This is Description of Categories,
+        Place where you can store your categories list, and where you can find all of your categories
+      `
     }
   }
 ]
+
+export const createBreadcrumbsURL = (idx, arr) => {
+  switch (idx) {
+    case 0:
+      return [arr[idx]];
+    case 1:
+      const dirs_case1 = [];
+      for (let i = 0; i <= idx; i++) {
+        dirs_case1.push(arr[i]);
+      }
+      return dirs_case1;
+    case 2:
+      const dirs_case2 = [];
+      for (let i = 0; i <= idx; i++) {
+        dirs_case2.push(arr[i]);
+      }
+      return dirs_case2;
+    default:
+      throw new Error('Hiya hiya error!');
+  }
+}
