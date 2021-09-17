@@ -7,9 +7,8 @@ import { product_data } from '@app/utils/utils';
 
 
 const Main = () => {
-
   return (
-    <div id="product-data-container" className="w-full flex items-center justify-center flex-row flex-grow space-x-6">
+    <div id="product-data-container" className="w-full flex items-center justify-center flex-row flex-grow space-x-6 h-full">
       {product_data.map( product => <ProductDataLinkCard item={product} key={ product.state.id } /> )}
     </div>
   );

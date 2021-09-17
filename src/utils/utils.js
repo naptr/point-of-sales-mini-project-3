@@ -23,6 +23,22 @@ export const matchUrl = (url) => {
   return displayTitle;
 }
 
+export const createBreadcrumbsURL = (idx, arr) => {
+  switch (idx) {
+    case 0:
+      return [ arr[ idx ] ];
+    case 1:
+    case 2:
+      const dirs = [];
+      for (let i = 0; i <= idx; i++) {
+        dirs.push(arr[ i ]);
+      }
+      return dirs;
+    default:
+      throw new Error('Hiya hiya error!');
+  }
+}
+
 /**
  * Objects and Contstantas
  */
@@ -120,24 +136,3 @@ export const product_data = [
     }
   }
 ]
-
-export const createBreadcrumbsURL = (idx, arr) => {
-  switch (idx) {
-    case 0:
-      return [arr[idx]];
-    case 1:
-      const dirs_case1 = [];
-      for (let i = 0; i <= idx; i++) {
-        dirs_case1.push(arr[i]);
-      }
-      return dirs_case1;
-    case 2:
-      const dirs_case2 = [];
-      for (let i = 0; i <= idx; i++) {
-        dirs_case2.push(arr[i]);
-      }
-      return dirs_case2;
-    default:
-      throw new Error('Hiya hiya error!');
-  }
-}

@@ -2,8 +2,8 @@ import { dashboard } from './apis';
 
 const token = localStorage.getItem('token');
 
-export const getProducts = async () => {
-  const products = await dashboard.get('/products');
+export const getProducts = async (page = 1) => {
+  const products = await dashboard.get(`/products?page=${page}`);
 
   return products;
 }

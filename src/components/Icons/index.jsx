@@ -147,7 +147,7 @@ export const MainProductDataIcon = ({ iconType, size }) => {
       );
     case 'categories':
       return (
-        <svg id="Capa_1" enable-background="new 0 0 512.605 512.605" height={size} viewBox="0 0 512.605 512.605" width={size} xmlns="http://www.w3.org/2000/svg">
+        <svg id="Capa_1" enableBackground="new 0 0 512.605 512.605" height={size} viewBox="0 0 512.605 512.605" width={size} xmlns="http://www.w3.org/2000/svg">
           <g>
             <g>
               <circle cx="368.484" cy="366.165" fill="#fef0ae" r="91.933" />

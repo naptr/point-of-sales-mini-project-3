@@ -11,7 +11,7 @@ const ProductData = () => {
   const location = useLocation();
 
   return (
-    <>
+    <div className="flex-grow flex flex-col">
       {
         (location.pathname.includes('/products') || location.pathname.includes('/categories')) && <ProductNav />
       }
@@ -26,7 +26,7 @@ const ProductData = () => {
           <Categories />
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 
