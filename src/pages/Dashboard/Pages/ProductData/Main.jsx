@@ -19,7 +19,7 @@ const ProductDataLinkCard = ({ item }) => {
 
   return (
     <Link to={path}>
-      <div id="card-wrapper" className="transition-all duration-300 flex items-start py-10 px-5 justify-center h-64 w-96 rounded border-2 bg-white hover:bg-purple-100 border-none">
+      <div id="card-wrapper" className="transition-all duration-500 flex items-start py-10 px-5 justify-center h-64 w-96 rounded border-2 bg-white hover:bg-purple-100 border-none">
         <div id="center-content-wrapper" className="flex flex-col items-center justify-center space-y-6">
           <MainProductDataIcon iconType={state.name} size="64px" />
           <div id="caption" className="flex flex-col items-center justify-center font-caption">

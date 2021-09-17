@@ -9,7 +9,7 @@ const Topbar = () => {
 
   return (
     // <Link className={`bg-white h-18 w-full flex items-center justify-between`}>
-    <div className="bg-white h-18 w-full flex items-center justify-between">
+    <div className="bg-white h-18 w-full flex items-center justify-center flex-none">
       <h1 className="font-title font-bold italic text-3xl text-purple-500">
         {
           location.pathname === '/dashboard' ? 'Dashboard' : currentURL
