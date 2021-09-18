@@ -21,8 +21,10 @@ const Sidebar = () => {
     setOpenSidebar(!openSidebar)
   }
 
+  useEffect(() => console.log(openSidebar), [openSidebar])
+
   return (
-    <div ref={sidebarRef} id="dashboard-sidebar" className={`shadow-md font-body absolute h-screen w-14 flex-shrink bg-gray-800 transition-all duration-300 ease-out tracking-wider ${openSidebar ? 'w-56' : 'w-14'}`}>
+    <div ref={sidebarRef} id="dashboard-sidebar" className={`z-50 shadow-md font-body absolute top-0 left-0 h-screen flex-shrink bg-gray-800 transition-all duration-300 ease-out tracking-wider ${openSidebar ? 'w-56' : 'w-14'}`}>
       <div id="sidebar-item-wrapper" className="h-full w-full py-6 flex flex-col justify-between">
         <div id="top-items-wrapper" className="h-full w-full flex flex-col items-center space-y-16 relative">
           <div id="logo" className="w-full flex-shrink flex items-center justify-start pl-2.5 static">

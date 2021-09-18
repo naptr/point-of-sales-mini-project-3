@@ -46,7 +46,7 @@ const DashboardRoute = () => {
   return (
     <div id="dashboard-route" className="w-full h-full flex flex-row relative">
       <Sidebar />
-      <div id="router-view" className="pl-20 pr-6 pb-6 bg-white w-full flex flex-col max-h-screen">
+      <div id="router-view" className="pl-20 pr-6 pb-6 bg-white w-full flex flex-col min-h-screen">
         <Topbar />
         <Switch>
           <Route path='/dashboard' exact>

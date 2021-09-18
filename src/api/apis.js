@@ -58,5 +58,18 @@ export const dashboard = {
     } catch (error) {
       return error;
     }
+  },
+  delete: (url, config) => {
+    try {
+      const result = NeatAPI.delete(`${url}`, {
+        ...config,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return result;
+    } catch (error) {
+      return error;
+    }
   }
 }
