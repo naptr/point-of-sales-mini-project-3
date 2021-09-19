@@ -18,10 +18,14 @@ module.exports = {
       },
       spacing: {
         '18': '4.5rem',
+        'custom-height': '656px'
       },
       minHeight: {
-        'md': '768px'
-      }
+        'custom': '704px'
+      },
+      maxHeight: {
+        'custom': '656px'
+      },
     }
   },
   variants: {

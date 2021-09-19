@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
+import { EditIcon, DeleteIcon, PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
+
 import { getProducts, deleteProductByID } from '@app/api/dashboard';
 import { products_table_heads, setProductsItemList, itemNumberByPage } from '@app/utils/utils';
 
@@ -18,14 +20,19 @@ const Products = () => {
     refetchOnWindowFocus: false,
   });
 
-  // useEffect(() => console.log(products), [products]);
+  const setTotalPage = (totalItem) => {
+    return Math.ceil(totalItem / 10, 0);
+  }
 
   return (
-    <div className="flex flex-col flex-grow">
-      <div id="content-wrapper" className="flex min-h-96 w-full flex-row">
-        <div id="content-table-wrapper" className="flex flex-col min-h-md justify-between">
-          <div id="table-wrapper" className="flex flex-col">
-            <div id="table-head" className="h-16 w-full flex flex-row items-center space-x-4">
+    <div className="flex flex-col flex-grow justify-between">
+      {/* <div id="content-wrapper" className="flex min-h-96 w-full flex-row"> */}
+        <div id="products-list-title" className="w-full ">
+          <h2>Products List</h2>
+        </div>
+        <div id="content-table-wrapper" className="flex flex-col justify-between">
+          <div id="table-wrapper" className="flex flex-col min-h-custom max-w-min">
+            <div id="table-head" className="h-12 flex flex-row items-center space-x-4 bg-purple-100">
               <>
                 {
                   products_table_heads.map(head => (
@@ -39,7 +46,7 @@ const Products = () => {
                 <p>Actions</p>
               </ProductsRowComponent>
             </div>
-            <div id="table-body-wrapper" className="w-full flex flex-col">
+            <div id="table-body-wrapper" className="w-full flex flex-col h-custom-height items-center">
               {
                 isLoading || isFetching ? (
                   <span>Loading ...</span>
@@ -55,26 +62,25 @@ const Products = () => {
               }
             </div>
           </div>
-          <div className="flex flex-row space-x-6 h-10">
-            <button onClick={() => setPage(1)} disabled={products?.data.data.current_page == 1}>
-              1
-            </button>
-            <button onClick={() => setPage(old => old - 1)} disabled={products?.data.data.current_page == 1} className="bg-purple-400">
-              -
-            </button>
+        </div>
+        <div className="flex flex-row h-8 max-w-max font-caption text-sm bg-purple-100">
+          <button className="px-2 transition-all duration-300 flex items-center justify-center hover:bg-purple-200" onClick={() => setPage(1)} disabled={products?.data.data.current_page == 1}>
+            First
+          </button>
+          <button className="disabled:opacity-50 transition-all duration-300 w-8 flex items-center justify-center hover:bg-purple-200" onClick={() => setPage(old => old - 1)} disabled={products?.data.data.current_page == 1}>
+            <PreviousPageIcon size="20" />
+          </button>
+          <div className="transition-all duration-300 w-8 flex items-center justify-center font-bold text-purple-500">
             <p>{page}</p>
-            <button onClick={() => setPage(old => old + 1)} disabled={page == Math.ceil((products?.data.data.total / 10), 0)}>
-              +
-            </button>
-            <button onClick={() => setPage(Math.ceil(products?.data.data.total / 10, 0))} disabled={products?.data.data.current_page == Math.ceil(Math.ceil(products?.data.data.total / 10, 0))}>
-              { Math.ceil(products?.data.data.total / 10, 0) }
-            </button>
           </div>
+          <button className="disabled:opacity-50 transition-all duration-300 w-8 flex items-center justify-center hover:bg-purple-200" onClick={() => setPage(old => old + 1)} disabled={page == setTotalPage(products?.data.data.total)}>
+            <NextPageIcon size="20" />
+          </button>
+          <button className="px-2 transition-all duration-300 flex items-center justify-center hover:bg-purple-200" onClick={() => setPage(setTotalPage(products?.data.data.total))} disabled={products?.data.data.current_page == (setTotalPage(products?.data.data.total))}>
+            Last
+          </button>
         </div>
-        <div id="another-content" className="flex-grow flex items-center justify-center">
-          <p className="text-9xl font-title text-purple-500">{ page }</p>
-        </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
@@ -97,21 +103,21 @@ const ProductDataRows = ({ item, idx }) => {
     mutation.mutate(item.id);
   }
 
-  useEffect(() => console.log(idx), [idx]);
-
   return (
-    <div id="table-body-row" className="h-16 w-full flex flex-row space-x-4 items-center">
+    <div id="table-body-row" className="h-18 w-full flex flex-row space-x-4 items-center">
       {
-        bodyDatas.map(body => (
-          <ProductsRowComponent id={body.id} className={body.classes}>
+        bodyDatas.map((body, idx) => (
+          <ProductsRowComponent id={body.id} className={body.classes} key={idx}>
             { body.child }
           </ProductsRowComponent>
         ))
       }
       <ProductsRowComponent id="actions" className="px-4 w-24 flex flex-row items-center justify-around">
-        <div className="px-2"> Edit </div>
-        <button className="px-2" onClick={handleDeleteItem}>
-          -
+        <div className="transition-all flex items-center justify-center h-7 w-7 duration-300 p-1 rounded hover:bg-green-100">
+          <EditIcon size="20" />
+        </div>
+        <button className="h-7 w-7 transition-all flex items-center justify-center duration-300 p-1 rounded hover:bg-red-100" onClick={handleDeleteItem}>
+          <DeleteIcon size="19" />
         </button>
       </ProductsRowComponent>
       {
@@ -128,5 +134,15 @@ const ProductsRowComponent = (props) => {
     <div {...props}>
       { children }
     </div>
+  );
+}
+
+const PaginationButton = (props) => {
+  const { children } = props;
+
+  return (
+    <button {...props}>
+      { children }
+    </button>
   );
 }
