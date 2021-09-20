@@ -53,11 +53,22 @@ export const deleteProductByID = async (id) => {
 
 /**
  * Post
- * @param { } 
+ * @param { FormData } data
  */
 
-export const postNewProduct = async (data) => {
+export const createProduct = async data => {
   const response = await dashboard.post(`${single_product_URL}/add`, data);
+
+  return response;
+}
+
+/**
+ * Put
+ * @param { FormData } data
+ */
+
+export const editProductDetails = async (data, product_id) => {
+  const response = await dashboard.put(`${single_product_URL}/update/${product_id}`);
 
   return response;
 }

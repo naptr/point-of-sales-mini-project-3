@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { 
-  useQuery, 
-  useMutation, 
-  useQueryClient 
-} from 'react-query';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 
-import { 
-  EditIcon, 
-  DeleteIcon, 
-  PreviousPageIcon, 
-  NextPageIcon 
-} from '@app/components/Icons';
+import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
 import { Loader } from '@app/components/Loader';
+import { Table } from '@app/components/Table';
 
-import { 
-  getProducts, 
-  deleteProductByID, 
-  postNewProduct, 
-} from '@app/api/dashboard';
-import { 
-  products_table_heads, 
-  setProductsItemList, 
-  itemNumberByPage 
-} from '@app/utils/utils';
+import { getProducts } from '@app/api/dashboard';
+import { products_table_heads } from '@app/utils/utils';
 
 
 const Products = () => {
@@ -55,7 +39,7 @@ const Products = () => {
   }
 
   // Create New Product Handler
-  const newProductHandler = () => {
+  const formAppearHandler = () => {
     setFormAppear(!formAppear);
   }
 
@@ -72,43 +56,11 @@ const Products = () => {
       }
       <div id="products-list-title" className="w-full h-10 flex justify-between items-center text-purple-500">
         <h2 className="text-xl font-semibold italic font-caption">Products List</h2>
-        <button id="add-products" className="h-full hover:bg-green-100 w-28 rounded flex items-center justify-center font-caption text-sm text-green-400 transition-all duration-300" onClick={newProductHandler}>
+        <button id="add-products" className="h-full hover:bg-green-100 w-28 rounded flex items-center justify-center font-caption text-sm text-green-400 transition-all duration-300" onClick={formAppearHandler}>
           <p>New Product</p>
         </button>
       </div>
-      <div id="content-table-wrapper" className="flex flex-col shadow-md rounded">
-        <div id="table-wrapper" className="flex flex-col min-h-custom">
-          <div id="table-head" className="h-12 flex flex-row items-center justify-between bg-purple-300">
-            <>
-              {
-                products_table_heads.map(head => (
-                  <TableRowComponent id={head.id} className={head.classes} key={head.id}>
-                    {head.textContent}
-                  </TableRowComponent>
-                ))
-              }
-            </>
-            <TableRowComponent id="actions" className="px-4 w-24 flex items-center justify-center">
-              <p>Actions</p>
-            </TableRowComponent>
-          </div>
-          <div id="table-body-wrapper" className="w-full flex flex-col h-custom-height items-center">
-            {
-              isLoading || isFetching ? (
-                <span>Loading ...</span>
-              ) : isError ? (
-                <span>an error occured: { error } </span>
-              ) : (
-                //.map(data => console.log(data))
-                  products.data.data.data.map((product, idx) => (
-                    <TableColumnsComponent item={product} key={idx} idx={itemNumberByPage(products?.data.data.current_page, idx, (products?.data.data.data).length)} setLoading={dataLoadingHandler} />
-                  ))
-                // <></>
-              )
-            }
-          </div>
-        </div>
-      </div>
+      <Table tableBodyData={products?.data.data} tableHeadData={products_table_heads} loading={isLoading} fetching={isFetching} error={isError} errorMessage={error} handleLoading={dataLoadingHandler} />
       <div className="flex flex-row h-8 max-w-max font-caption text-sm bg-purple-300">
         <button className="px-2 transition-all duration-300 flex items-center justify-center hover:bg-purple-200" onClick={() => setPage(1)} disabled={products?.data.data.current_page == 1}>
           First
@@ -131,60 +83,3 @@ const Products = () => {
 }
 
 export default Products;
-
-// Table Components
-const TableColumnsComponent = ({ item, idx, setLoading }) => {
-  const bodyDatas = setProductsItemList(item, ( idx ));
-  const queryClient = useQueryClient();
-  const mutation = useMutation(id => deleteProductByID(id), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('products');
-      // console.log(data);
-    }
-  });
-
-  const handleDeleteItem = () => {
-    // console.log(e);
-    mutation.mutate(item.id);
-  }
-
-  useEffect(() => setLoading(mutation.isLoading), [mutation.isLoading]);
-
-  return (
-    <div id="table-body-row-wrapper" className="h-18 w-full items-center relative odd:bg-purple-50">
-      <div id="table-body-row" className="h-full w-full flex flex-row justify-between items-center">
-        {
-          bodyDatas.map((body, idx) => (
-            <TableRowComponent id={body.id} className={body.classes} key={idx}>
-              { body.child }
-            </TableRowComponent>
-          ))
-        }
-        <TableRowComponent id="actions" className="px-4 w-24 flex flex-row items-center justify-around">
-          <div className="transition-all flex items-center justify-center h-7 w-7 duration-300 p-1 rounded hover:bg-yellow-100"> 
-            <EditIcon size="20" />
-          </div>
-          <button className="h-7 w-7 transition-all flex items-center justify-center duration-300 p-1 rounded hover:bg-red-100" onClick={handleDeleteItem}>
-            <DeleteIcon size="19" />
-          </button>
-        </TableRowComponent>
-      </div>
-      {/* {
-        mutation.isLoading && 
-        <div id="loader" className="h-full w-10 flex items-center justify-center absolute -top-16 right-0">
-          <Loader loader="BeatLoader" size={6} color="#8B5CF6" />
-        </div>
-      } */}
-    </div>
-  );
-}
-
-const TableRowComponent = (props) => {
-  const { children } = props;
-
-  return (
-    <div {...props}>
-      { children }
-    </div>
-  );
-}
