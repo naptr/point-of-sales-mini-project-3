@@ -132,6 +132,11 @@ export const products_table_heads = [
     classes: "px-4 w-56 flex items-center justify-start"
   },
   {
+    id: 'product-supplier',
+    textContent: 'Supplier',
+    classes: "px-4 w-56 flex items-center justify-start"
+  },
+  {
     id: 'product-stocks',
     textContent: 'Stocks',
     classes: "px-4 w-24 flex items-center justify-center"
@@ -220,6 +225,11 @@ export const setProductsItemList = (item, idx) => {
       classes: "px-4 w-56 flex items-center justify-start"
     },
     {
+      id: 'item-supplier',
+      child: item.supplier.supplier_name,
+      classes: "px-4 w-56 flex items-center justify-start"
+    },
+    {
       id: 'item-stock',
       child: item.stock,
       classes: "px-4 w-24 flex items-center justify-center"
@@ -233,5 +243,9 @@ export const setProductsItemList = (item, idx) => {
 }
 
 export const itemNumberByPage = (page, itemIdx, dataLength) => {
-  return (page * 10) - ((page) - (itemIdx + 1)) - (dataLength - page);
+  if (dataLength < 10) {
+    return itemIdx + 1
+  } else {
+    return (page * 10) - ((page) - (itemIdx + 1)) - (dataLength - page);
+  }
 }

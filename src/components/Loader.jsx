@@ -2,8 +2,8 @@ import React from 'react';
 import * as Spinner from 'react-spinners';
 
 
-export const Loader = ({ loader,color, css, size, height, width, radius, margin }) => {
-  const LoaderComponent = Spinner[loader];
+export const Loader = ({ type, color, css, size, height, width, radius, margin }) => {
+  const LoaderComponent = Spinner[type];
 
   return (
     <>

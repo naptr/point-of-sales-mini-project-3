@@ -114,7 +114,7 @@ export default Login;
 const LoginLoader = () => {
   return (
     <div id="login-loader" className="h-1/2 w-1/2 absolute z-50 flex items-center justify-center bg-gray-800">
-      <Loader loader="PuffLoader" size={60} color="#8B5CF6" />
+      <Loader type="PuffLoader" size={60} color="#8B5CF6" />
     </div>
   )
 }
