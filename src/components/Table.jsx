@@ -8,11 +8,11 @@ import { setProductsItemList, itemNumberByPage } from '@app/utils/utils';
 import { deleteProductByID } from '@app/api/dashboard';
 
 
-export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading }) => {
+export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {
   return (
-    <div id="content-table-wrapper" className="flex flex-col shadow-md rounded">
-      <div id="table-wrapper" className="flex flex-col min-h-custom">
-        <div id="table-head" className="h-12 flex flex-row items-center justify-between bg-purple-300">
+    <div id="content-table-wrapper" className="flex flex-col">
+      <div id="table-wrapper" className="flex flex-col min-h-custom space-y-1">
+        <div id="table-head" className="h-12 flex flex-row items-center justify-between text-purple-500 bg-purple-200 font-semibold shadow-md">
           <>
             {
               tableHeadData.map(head => ( // row_data
@@ -26,7 +26,7 @@ export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, 
             <p>Actions</p>
           </RowComponent>
         </div>
-        <div id="table-body-wrapper" className="w-full flex flex-col h-custom-height items-center">
+        <div id="table-body-wrapper" className="w-full flex flex-col h-custom-height items-center space-y-1">
           {
             loading || fetching ? ( // loading | fetching
               <div id="error-component" className="h-full w-full flex items-center justify-center">
@@ -36,7 +36,7 @@ export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, 
               <span>an error occured: { errorMessage } </span>
             ) : (
               tableBodyData.data.map((product, idx) => ( // column_data
-                <ColumnComponent item={product} key={idx} idx={itemNumberByPage(tableBodyData.current_page, idx, (tableBodyData.data).length)} setLoading={handleLoading} />
+                <ColumnComponent item={product} key={idx} idx={itemNumberByPage(tableBodyData.current_page, idx, (tableBodyData.data).length)} setLoading={handleLoading} editItem={editMode} handleFormAppear={handleFormAppear} />
               ))
             )
           }
@@ -57,7 +57,7 @@ export const RowComponent = props => {
   );
 }
 
-export const ColumnComponent = ({ item, idx, setLoading }) => {
+export const ColumnComponent = ({ item, idx, setLoading, editItem, handleFormAppear }) => {
   const bodyDatas = setProductsItemList(item, idx);
   const queryClient = useQueryClient();
   const mutation = useMutation(id => deleteProductByID(id), {
@@ -67,6 +67,14 @@ export const ColumnComponent = ({ item, idx, setLoading }) => {
     }
   });
 
+  const handleEditItem = () => {
+    editItem({
+      mode: true,
+      item_id: item.id
+    });
+    handleFormAppear();
+  }
+
   const handleDeleteItem = () => {
     // console.log(e);
     mutation.mutate(item.id);
@@ -75,7 +83,7 @@ export const ColumnComponent = ({ item, idx, setLoading }) => {
   useEffect(() => setLoading(mutation.isLoading), [ mutation.isLoading ]);
 
   return (
-    <div id="table-body-row-wrapper" className="h-18 w-full items-center relative odd:bg-purple-50">
+    <div id="table-body-row-wrapper" className="h-18 w-full items-center relative shadow rounded">
       <div id="table-body-row" className="h-full w-full flex flex-row justify-between items-center">
         {
           bodyDatas.map((body, idx) => (
@@ -85,9 +93,9 @@ export const ColumnComponent = ({ item, idx, setLoading }) => {
           ))
         }
         <RowComponent id="actions" className="px-4 w-24 flex flex-row items-center justify-around">
-          <div className="transition-all flex items-center justify-center h-7 w-7 duration-300 p-1 rounded hover:bg-yellow-100">
+          <button className="transition-all flex items-center justify-center h-7 w-7 duration-300 p-1 rounded hover:bg-yellow-100" onClick={handleEditItem}>
             <EditIcon size="20" />
-          </div>
+          </button>
           <button className="h-7 w-7 transition-all flex items-center justify-center duration-300 p-1 rounded hover:bg-red-100" onClick={handleDeleteItem}>
             <DeleteIcon size="19" />
           </button>

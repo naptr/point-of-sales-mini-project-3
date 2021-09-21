@@ -21,7 +21,7 @@ export const getProducts = async (page = 1) => {
 }
 
 export const getProductDetailsByID = async id => {
-  const details = await dashboard.get(`${products_URL}/details/${id}`);
+  const details = await dashboard.get(`${products_URL}/detail/${id}`);
 
   return details;
 }
@@ -38,6 +38,17 @@ export const getCategories = async () => {
   const categories = await dashboard.get(categories);
 
   return categories;
+}
+
+// Multiple Requests
+export const getMultipleRequest = async requests => {
+  try {
+    const result = await Promise.all(requests);
+
+    return result;
+  } catch (error) {
+    return error;
+  }
 }
 
 /**

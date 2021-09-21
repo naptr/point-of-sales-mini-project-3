@@ -6,7 +6,7 @@ import { BackIcon } from '@app/components/Icons';
 
 const ProductNav = () => {
   const history = useHistory();
-  const [hoverColor, setHoverColor] = useState(false);
+  // const [hoverColor, setHoverColor] = useState(false);
 
   const [dir, ...directoryTree] = (history.location.pathname).split('/');
 
@@ -25,18 +25,18 @@ const ProductNav = () => {
     }
   }
 
-  const handleBackToMainProduct = () => {
-    history.push('/dashboard/product-data');
-  }
+  // const handleBackToMainProduct = () => {
+  //   history.goBack();
+  // }
 
-  const handleMouseHover = () => {
-    setHoverColor(!hoverColor);
-  }
+  // const handleMouseHover = () => {
+  //   setHoverColor(!hoverColor);
+  // }
 
   return (
     <div id="product-data-nav" className="w-fulll flex flex-row items-center justify-start space-x-6 h-12">
       <div id="back-button" className="h-full flex items-center justify-center">
-        <button onClick={handleBackToMainProduct} className="transition-all duration-300 bg-white hover:bg-purple-100 p-2 rounded">
+        <button onClick={() => history.goBack()} className="transition-all duration-300 bg-white hover:bg-purple-100 p-2 rounded">
           <BackIcon size="20" />
         </button>
       </div>
