@@ -24,7 +24,8 @@ module.exports = {
         'custom': '704px'
       },
       maxHeight: {
-        'custom': '656px'
+        'custom': '656px',
+        '50': '12.5rem'
       },
     }
   },
