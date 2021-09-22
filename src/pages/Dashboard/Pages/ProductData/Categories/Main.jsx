@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 
-const Categories = () => {
+const Main = () => {
   return (
     <>
       <h1>Categories</h1>
@@ -11,4 +12,4 @@ const Categories = () => {
   );
 }
 
-export default Categories;
+export default Main;

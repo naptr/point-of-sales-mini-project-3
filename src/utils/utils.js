@@ -173,19 +173,33 @@ export const matchUrl = (url) => {
 }
 
 export const createBreadcrumbsURL = (idx, arr) => {
-  switch (idx) {
-    case 0:
-      return [ arr[ idx ] ];
-    case 1:
-    case 2:
-      const dirs = [];
-      for (let i = 0; i <= idx; i++) {
-        dirs.push(arr[ i ]);
-      }
-      return dirs;
-    default:
-      throw new Error('Hiya hiya error!');
+  if (idx > 0) {
+    const dirs = [];
+    for (let i = 0; i <= idx; i++) {
+      dirs.push(arr[ i ]);
+    }
+    return dirs;
+  } else {
+    return [ arr[ idx ] ];
   }
+}
+
+export const parseURLToTitle = (url) => {
+  switch (url) {
+    case 'dashboard':
+      return 'Dashboard';
+    case 'product-data':
+      return "Product Data";
+    case 'categories':
+      return 'Categories';
+    case 'products':
+      return 'Products';
+    case 'category-details':
+      return "Category Details"
+    default:
+      throw new Error('None of above condition is choosen');
+  }
+  // console.log(url)
 }
 
 export const setProductsItemList = (item, idx) => {

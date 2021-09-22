@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { createBreadcrumbsURL } from '@app/utils/utils';
+import { createBreadcrumbsURL, parseURLToTitle } from '@app/utils/utils';
 import { BackIcon } from '@app/components/Icons';
 
 
@@ -9,21 +9,6 @@ const ProductNav = () => {
   // const [hoverColor, setHoverColor] = useState(false);
 
   const [dir, ...directoryTree] = (history.location.pathname).split('/');
-
-  const parseURLToTitle = (url) => {
-    switch (url) {
-      case 'dashboard':
-        return 'Dashboard';
-      case 'product-data':
-        return 'Product Data';
-      case 'categories':
-        return 'Categories';
-      case 'products':
-        return 'Products';
-      default:
-        throw new Error('None of above condition is choosen');
-    }
-  }
 
   // const handleBackToMainProduct = () => {
   //   history.goBack();
