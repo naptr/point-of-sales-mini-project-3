@@ -54,6 +54,7 @@ export const dashboard = {
           'Authorization': `Bearer ${token}`
         }
       });
+      
       return result;
     } catch (error) {
       return error;

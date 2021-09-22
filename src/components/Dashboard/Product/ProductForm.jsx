@@ -1,6 +1,8 @@
  import React, { useEffect, useState, useRef } from 'react';
 import {  useQueryClient, useMutation, useQuery } from 'react-query';
 
+import Notificator from '@app/components/Dashboard/Notificator';
+
 import {
   getProductDetailsByID, 
   createProduct, 
@@ -37,13 +39,11 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   
   /* Queries */
   const queryClient = useQueryClient();
-  const mutation = useMutation(data => handleDataSending(data));
+  const mutation = useMutation(data => handleDataSending(data), {
+    onSuccess: () => queryClient.invalidateQueries('products')
+  });
   const {
     data: result,
-    isLoading,
-    isFetching,
-    isError,
-    error
   } = useQuery('multipleRequestQueries', () => getMultipleRequest([dashboard.get('/suppliers'), dashboard.get('/categories')]), {
     refetchOnWindowFocus: false
   })
@@ -60,8 +60,8 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
       
       setProductDetails({
         product_code: data.data.product_code,
-        image: data.data.image,
         product_name: data.data.product_name,
+        image: data.data.image,
         stock: data.data.stock,
         price: data.data.price,
         category: {
@@ -85,22 +85,51 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   const handleSumbitProduct = (e) => {
     e.preventDefault();
 
-    const formData = new FormData;
-    for (const single_data of Object.keys(productDetails)) {
-      if (single_data == 'category' || single_data == 'supplier') {
-        formData.append(`${single_data}_id`, productDetails[single_data].id)
-        // console.log(productDetails[single_data].id);
-      } else {
-        formData.append(single_data, productDetails[single_data]);
+    if (editMode.mode) {
+      const data = {}
+      for (const data_prop of Object.keys(productDetails)) {
+        if (data_prop == 'category' || data_prop == 'supplier') {
+          data[`${data_prop}_id`] = productDetails[data_prop].id;
+        } else {
+          data[data_prop] = productDetails[data_prop];
+        }
       }
-    }
 
-    mutation.mutate()
+      mutation.mutate(data);
+    } else if (createMode) {
+      const formData = new FormData;
+      for (const single_data of Object.keys(productDetails)) {
+        if (single_data == 'category' || single_data == 'supplier') {
+          formData.append(`${single_data}_id`, productDetails[single_data].id)
+        } else {
+          formData.append(single_data, productDetails[single_data]);
+        }
+      }
+  
+      mutation.mutate(formData);
+    }
   }
 
   // handle data sending
-  const handleDataSending = data => {
-    if ()
+  const handleDataSending = async data => {
+
+    if (editMode.mode) {
+      try {
+        const response = await editProductDetails(data, editMode.item_id);
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (createMode) {
+      try {
+        const response = await createProduct(data);
+        
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   // close Form Handler
@@ -190,7 +219,10 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   return (
     <div id="form-wrapper" className="h-full w-full flex items-center justify-center space-y-8 flex-col ">
       {
-        productDetailsLoading ? (
+        mutation.isSuccess && <Notificator closeForm={closeFormHandler} message={`Your Product is Successfully ${editMode.mode ? "Updated" : "Created" }`} />
+      }
+      {
+        productDetailsLoading || mutation.isLoading ? (
           <h1>Loading..</h1>
         ) : (
           <>
@@ -216,6 +248,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
                   <div id="input-label" className="h-full w-1/3 flex flex-col space-y-8 font-caption font-semibold text-gray-800">
                     <label className="h-10 flex items-center" >Product Code</label>
                     <label className="h-10 flex items-center" >Product Name</label>
+                    <label className="h-10 flex items-center" >Price</label>
                     <label className="h-10 flex items-center" >Stock</label>
                     <label className="h-10 flex items-center" >Category</label>
                     <label className="h-10 flex items-center" >Supplier</label>
@@ -223,6 +256,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
                   <div id="inputs" className="h-full flex-grow flex flex-col space-y-8 font-caption">
                     <input name="product_code" value={productDetails.product_code} className="transition-colors duration-300 bg-purple-50 w-16 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" onChange={handleInputChange} />
                     <input name="product_name" value={productDetails.product_name} className="transition-colors duration-300 bg-purple-50 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" onChange={handleInputChange} />
+                    <input name="price" value={productDetails.price} className="transition-colors duration-300 bg-purple-50 w-32 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" onChange={handleInputChange} />
                     <input name="stock" value={productDetails.stock} className="transition-colors duration-300 bg-purple-50 w-16 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" onChange={handleInputChange} />
                     <div className="h-10 w-full relative flex items-center rounded" >
                       <div onClick={() => { handleDropdown(categoryDropdownRef)}} ref={categoryDropdownRef} name="category" className="h-full w-full flex items-center bg-purple-50 transition-all duration-300  hover:bg-purple-100 px-2 cursor-pointer active:bg-purple-50">
