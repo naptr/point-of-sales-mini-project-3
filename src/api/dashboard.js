@@ -21,7 +21,7 @@ export const getProducts = async (page = 1) => {
 }
 
 export const getProductDetailsByID = async id => {
-  const details = await dashboard.get(`${products_URL}/detail/${id}`);
+  const details = await dashboard.get(`${products_URL}/${id}`);
 
   return details;
 }
@@ -35,7 +35,7 @@ export const getSuppliers = async () => {
 
 // Categories APIs
 export const getCategories = async () => {
-  const categories = await dashboard.get(categories);
+  const categories = await dashboard.get(categories_URL);
 
   return categories;
 }
