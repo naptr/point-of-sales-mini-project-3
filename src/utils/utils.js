@@ -100,6 +100,45 @@ export const product_data = [
   }
 ]
 
+export const users_data = [
+  {
+    path: `${store.dashboard_url}/user-data/users`,
+    state: {
+      id: 1,
+      name: 'users',
+      textContent: 'Users',
+      description: `
+        Here you can find the list of users who use the apps,
+        only the users, not the staff nor the suppliers
+      `
+    }
+  },
+  {
+    path: `${store.dashboard_url}/user-data/staff`,
+    state: {
+      id: 2,
+      name: 'staff',
+      textContent: 'Staff',
+      description: `
+        Here you can find the list of staff who manage the apps,
+        only the staff, not the users nor the suppliers
+      `
+    }
+  },
+  {
+    path: `${store.dashboard_url}/user-data/suppliers`,
+    state: {
+      id: 3,
+      name: 'suppliers',
+      textContent: 'Suppliers',
+      description: `
+        Here you can find the list of suppliers who supply the products,
+        only the suppliers, not the staff nor the users
+      `
+    }
+  }
+]
+
 export const products_table_heads = [
   // {
   //   id: 'product-number',
