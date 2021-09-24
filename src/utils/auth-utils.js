@@ -9,5 +9,5 @@ export function logout() {
     localStorage.removeItem(key);
   }
 
-  window.location.reload();
+  window.location.href = '/'
 }
