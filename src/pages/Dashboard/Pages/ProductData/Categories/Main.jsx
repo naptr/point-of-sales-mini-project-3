@@ -11,7 +11,7 @@ import { getCategories } from '@app/api/dashboard';
 
 const Main = () => {
   const [formActive, setFormActive] = useState(false);
-  const [currentCategoryID, setCurrentCategoryID] = useState(null);
+  const [currentCategoryData, setCurrentCategoryData] = useState(null);
 
   const {
     data: categories,
@@ -22,15 +22,19 @@ const Main = () => {
   } = useQuery('categories', getCategories);
 
   /* Handlers */
-  const handleFormAppear = id => {
-    setFormActive(true);
+  const handleFormAppear = data => {
+    setFormActive(!formActive);
 
-    id && setCurrentCategoryID(id);
+    data && setCurrentCategoryData(data);
+  }
+
+  const handleCloseForm = () => {
+    setFormActive(!formActive)
   }
   /* End of Handlers */
 
   return formActive ? (
-    <CategoryForm id={currentCategoryID} />
+    <CategoryForm currentCategoryData={currentCategoryData} closeForm={handleCloseForm} />
   ) : (
     <div className="flex flex-col flex-grow justify-between relative">
       <div id="products-list-title" className="w-full h-10 flex justify-between items-center text-purple-500">

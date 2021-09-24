@@ -22,16 +22,16 @@ export const Card = ({ item, edit }) => {
         <p>{ item.category_name }</p>
       </div>
       {
-        <ActionsButton actionsAppear={actionsAppear} edit={edit} item_id={item.id} />
+        <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} />
       }
     </div>
   );
 }
 
-const ActionsButton = ({ actionsAppear, edit, item_id }) => {
+const ActionsButton = ({ actionsAppear, edit, item }) => {
 
   const handleEditCategory = () => {
-    edit(item_id);
+    edit(item);
   }
 
   return (
