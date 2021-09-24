@@ -2,9 +2,10 @@ import { dashboard } from './apis';
 
 
 const products_URL = '/products';
-const categories_URL = '/categories';
-const suppliers_URL = '/suppliers';
 const single_product_URL = '/product';
+const categories_URL = '/categories';
+const single_category_URL = '/category';
+const suppliers_URL = '/suppliers';
 
 
 /**
@@ -67,19 +68,40 @@ export const deleteProductByID = async (id) => {
  * @param { FormData } data
  */
 
+// Create
 export const createProduct = async data => {
   const response = await dashboard.post(`${single_product_URL}/add`, data);
 
   return response;
 }
 
-/**
- * 
- * @param { FormData } data
- */
+export const createCategory = async data => {
+  const response = await dashboard.post(`${single_category_URL}/add`, data);
 
+  return response;
+}
+
+// Edit
+
+
+/**
+ * Edit Product
+ * @param { FormData } data 
+ * @param { Number } product_id 
+ * @returns 
+ */
 export const editProductDetails = async (data, product_id) => {
   const response = await dashboard.post(`${single_product_URL}/update/${product_id}`, data);
+
+  return response;
+}
+
+/**
+ * Edit Category
+ * @param { Number } id
+ */
+export const editCategory = async id => {
+  const response = await dashboard.post(`${single_product_URL}/update/${id}`);
 
   return response;
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
 
 
-export const Card = ({ item, identifier }) => {
+export const Card = ({ item, edit }) => {
   const [actionsAppear, setActionsApper] = useState(false);
   const cardRef = useRef(null);
 
@@ -22,17 +22,21 @@ export const Card = ({ item, identifier }) => {
         <p>{ item.category_name }</p>
       </div>
       {
-        <ActionsButton actionsAppear={actionsAppear} />
+        <ActionsButton actionsAppear={actionsAppear} edit={edit} item_id={item.id} />
       }
     </div>
   );
 }
 
-const ActionsButton = ({ actionsAppear }) => {
+const ActionsButton = ({ actionsAppear, edit, item_id }) => {
+
+  const handleEditCategory = () => {
+    edit(item_id);
+  }
 
   return (
     <div className="h-full flex-grow flex items-center flex-row justify-evenly z-0">
-      <button id="edit-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'} h-full w-10 flex items-center justify-center hover:bg-yellow-100`}>
+      <button id="edit-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'} h-full w-10 flex items-center justify-center hover:bg-yellow-100`} onClick={handleEditCategory}>
         <EditIcon size="24px" />
       </button>
     <button id="delete-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'} h-full w-10  flex items-center justify-center hover:bg-red-100`}>
