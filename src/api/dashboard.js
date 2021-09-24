@@ -57,8 +57,14 @@ export const getMultipleRequest = async requests => {
  * @param { string } id
  */
 
-export const deleteProductByID = async (id) => {
+export const deleteProductByID = async id => {
   const response = await dashboard.delete(`${single_product_URL}/delete/${id}`);
+
+  return response;
+}
+
+export const deleteCategoryByID = async id => {
+  const response = await dashboard.delete(`${single_category_URL}/delete/${id}`);
 
   return response;
 }
@@ -100,8 +106,8 @@ export const editProductDetails = async (data, product_id) => {
  * Edit Category
  * @param { Number } id
  */
-export const editCategory = async id => {
-  const response = await dashboard.post(`${single_product_URL}/update/${id}`);
+export const editCategory = async (data, category_id) => {
+  const response = await dashboard.post(`${single_category_URL}/update/${category_id}`, data);
 
   return response;
 }

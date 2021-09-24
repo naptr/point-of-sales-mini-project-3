@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { Card } from '@app/components/Dashboard/Category';
 import { CategoryForm } from '@app/components/Dashboard/Category/CategoryForm';
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
+import { Loader } from '@app/components/Loader';
 
 import { getCategories } from '@app/api/dashboard';
 
@@ -12,6 +13,7 @@ import { getCategories } from '@app/api/dashboard';
 const Main = () => {
   const [formActive, setFormActive] = useState(false);
   const [currentCategoryData, setCurrentCategoryData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     data: categories,
@@ -19,13 +21,15 @@ const Main = () => {
     isFetching,
     isSuccess,
     error
-  } = useQuery('categories', getCategories);
+  } = useQuery('categories', getCategories, {
+    refetchOnWindowFocus: false
+  });
 
   /* Handlers */
   const handleFormAppear = data => {
     setFormActive(!formActive);
 
-    data && setCurrentCategoryData(data);
+    (data != undefined) && setCurrentCategoryData(data);
   }
 
   const handleCloseForm = () => {
@@ -34,11 +38,25 @@ const Main = () => {
   /* End of Handlers */
 
   return formActive ? (
-    <CategoryForm currentCategoryData={currentCategoryData} closeForm={handleCloseForm} />
+    <>
+      {
+        loading &&
+        <div id="loader" className="absolute top-20 right-8 p-1 rounded-full bg-white shadow-md flex items-center justify-center">
+          <Loader type="ClipLoader" size="24px" color="#8B5CF6" />
+        </div>
+      }
+      <CategoryForm currentCategoryData={currentCategoryData} closeForm={handleCloseForm} setLoading={setLoading} />
+    </>
   ) : (
     <div className="flex flex-col flex-grow justify-between relative">
+      {
+        loading &&
+        <div id="loader" className="absolute -top-10 right-2 p-1 rounded-full bg-white shadow-md flex items-center justify-center">
+          <Loader type="ClipLoader" size="24px" color="#8B5CF6" />
+        </div>
+      }
       <div id="products-list-title" className="w-full h-10 flex justify-between items-center text-purple-500">
-        <h2 className="text-xl font-semibold italic font-caption">Products List</h2>
+        <h2 className="text-xl font-semibold italic font-caption">Category List</h2>
         <button id="add-products" className="h-full hover:bg-green-100 w-28 rounded flex items-center justify-center font-caption text-sm text-green-400 transition-all duration-300" onClick={() => handleFormAppear()}>
           <p>New Categories</p>
         </button>
@@ -48,7 +66,7 @@ const Main = () => {
           isLoading && <h1>Loading...</h1>
         }
         {
-          categories?.data.data.map(category => <Card item={category} key={category.id} edit={handleFormAppear} />)
+          categories?.data.data.map(category => <Card item={category} key={category.id} edit={handleFormAppear} setLoading={setLoading} />)
         }
       </div>
       <div className="flex flex-row h-8 max-w-max font-caption text-sm bg-purple-200">

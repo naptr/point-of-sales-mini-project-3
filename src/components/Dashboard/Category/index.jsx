@@ -1,45 +1,59 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
+
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
 
+import { deleteCategoryByID } from '@app/api/dashboard';
 
-export const Card = ({ item, edit }) => {
+
+export const Card = ({ item, edit, setLoading }) => {
+  const queryClient = useQueryClient();
   const [actionsAppear, setActionsApper] = useState(false);
   const cardRef = useRef(null);
+
+  const mutation = useMutation(id => deleteCategoryByID(id), {
+    onSuccess: () => queryClient.invalidateQueries('categories')
+  })
 
 
   /* Handlers */
   const handleActionsAppear = () => {
     setActionsApper(!actionsAppear);
   }
+
+  const handleDeleteCategory = () => {
+    mutation.mutate(item.id)
+  }
   /* End of Handlers */
 
-  useEffect(() => console.log(item), []);
+  mutation.isLoading && setLoading(true);
+  // mutation.isSuccess && setLoading(false);
 
   return (
-    <div id="card-wrapper" className="w-full h-12 flex items-center flex-row justify-start">
+    <div id="card-wrapper" className="w-full h-18 flex items-start flex-row justify-start">
       <div ref={cardRef} className="bg-purple-100 hover:shadow-md active:shadow-none transition-all duration-300 rounded h-full w-5/6 font-caption flex items-center justify-center font-semibold text-gray-800 z-10 cursor-pointer" onClick={handleActionsAppear}>
         <p>{ item.category_name }</p>
       </div>
       {
-        <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} />
+        <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} deleteCategory={handleDeleteCategory} />
       }
     </div>
   );
 }
 
-const ActionsButton = ({ actionsAppear, edit, item }) => {
+const ActionsButton = ({ actionsAppear, edit, item, deleteCategory }) => {
 
   const handleEditCategory = () => {
     edit(item);
   }
 
   return (
-    <div className="h-full flex-grow flex items-center flex-row justify-evenly z-0">
-      <button id="edit-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'} h-full w-10 flex items-center justify-center hover:bg-yellow-100`} onClick={handleEditCategory}>
+    <div className="h-10 flex-grow flex items-center flex-row justify-evenly z-0">
+      <button id="edit-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'} h-full w-10 flex items-center justify-center hover:bg-yellow-100 active:bg-white`} onClick={handleEditCategory}>
         <EditIcon size="24px" />
       </button>
-    <button id="delete-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'} h-full w-10  flex items-center justify-center hover:bg-red-100`}>
+    <button id="delete-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'} h-full w-10  flex items-center justify-center hover:bg-red-100 active:bg-white`} onClick={deleteCategory}>
         <DeleteIcon size="22px" />
       </button>
     </div>
