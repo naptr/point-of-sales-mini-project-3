@@ -79,7 +79,7 @@ export const createProduct = async data => {
  */
 
 export const editProductDetails = async (data, product_id) => {
-  const response = await dashboard.put(`${single_product_URL}/update/${product_id}`, data);
+  const response = await dashboard.post(`${single_product_URL}/update/${product_id}`, data);
 
   return response;
 }

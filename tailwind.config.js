@@ -18,7 +18,6 @@ module.exports = {
       },
       spacing: {
         '18': '4.5rem',
-        'custom-height': '656px'
       },
       minHeight: {
         'custom': '704px'
@@ -27,6 +26,10 @@ module.exports = {
         'custom': '656px',
         '50': '12.5rem'
       },
+      height: {
+        'custom-height': '656px',
+        'another-custom-height': '888px'
+      }
     }
   },
   variants: {

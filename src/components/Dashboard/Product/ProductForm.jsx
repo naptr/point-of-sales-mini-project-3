@@ -61,7 +61,10 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
       setProductDetails({
         product_code: data.data.product_code,
         product_name: data.data.product_name,
-        image: data.data.image,
+        image: {
+          media: data.data.image,
+          name: '',
+        },
         stock: data.data.stock,
         price: data.data.price,
         category: {
@@ -80,34 +83,43 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
     }
   }  
   
+  const parseToURL = object => {
+    return URL.createObjectURL(object);
+  }
+
   /* Handler */
   // form submit handler
   const handleSumbitProduct = (e) => {
     e.preventDefault();
 
-    if (editMode.mode) {
-      const data = {}
-      for (const data_prop of Object.keys(productDetails)) {
-        if (data_prop == 'category' || data_prop == 'supplier') {
-          data[`${data_prop}_id`] = productDetails[data_prop].id;
-        } else {
-          data[data_prop] = productDetails[data_prop];
-        }
-      }
+    // if (editMode.mode) {
+    //   const data = {}
+    //   for (const data_prop of Object.keys(productDetails)) {
+    //     if (data_prop == 'category' || data_prop == 'supplier') {
+    //       data[`${data_prop}_id`] = productDetails[data_prop].id;
+    //     // } else if (data_prop == 'image') {
+    //     //   data[data_prop] = productDetails[data_prop].upload
+    //     } else {
+    //       data[data_prop] = productDetails[data_prop];
+    //     }
+    //   }
 
-      mutation.mutate(data);
-    } else if (createMode) {
+    //   mutation.mutate(data);
+    // } else if (createMode) {
       const formData = new FormData;
+      formData.append('_method', 'PUT')
       for (const single_data of Object.keys(productDetails)) {
         if (single_data == 'category' || single_data == 'supplier') {
           formData.append(`${single_data}_id`, productDetails[single_data].id)
+        } else if (single_data == 'image') {
+          formData.append(single_data, productDetails[single_data].media)
         } else {
           formData.append(single_data, productDetails[single_data]);
         }
       }
   
       mutation.mutate(formData);
-    }
+    // }
   }
 
   // handle data sending
@@ -148,7 +160,10 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
     if (ev.target.files && ev.target.files[0]) {
       setProductDetails({
         ...productDetails,
-        image: URL.createObjectURL(ev.target.files[0])
+        image: {
+          media: ev.target.files[0],
+          // name: ev.target.files[0].name,
+        }
       });
     }
   }
@@ -232,7 +247,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
                 {/* <img src={productDetails.image} className="w-full h-64 object-cover appearance-none" /> */}
                 <div id="image-wrapper" className="h-64 w-full flex items-center shadow-md">
                   <picture className="h-full w-full">
-                    <img src={productDetails.image ? productDetails.image : '/default_user.png'} className="h-full w-full object-cover" />
+                      <img src={typeof productDetails.image.media === 'string' ? productDetails.image.media : '/default_user.png' ? parseToURL(productDetails.image.media) : ''} className="h-full w-full object-cover" />
                   </picture>
                 </div>
                 <div id="file-input-button" className="transition-all h-10 w-full relative shadow-md rounded flex cursor-pointer items-center justify-center hover:transition-colors duration-300 bg-white hover:bg-purple-50 active:bg-white">

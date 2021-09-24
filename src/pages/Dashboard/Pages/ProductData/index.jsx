@@ -11,7 +11,7 @@ const ProductData = () => {
   const location = useLocation();
 
   return (
-    <div className="flex-grow flex flex-col">
+    <div className="flex-grow flex flex-col max-h-full">
       {
         (location.pathname.includes('/products') || location.pathname.includes('/categories')) && <ProductNav />
       }
