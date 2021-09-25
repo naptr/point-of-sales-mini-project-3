@@ -13,7 +13,7 @@ const UserData = () => {
   const { pathname } = useLocation();
 
   return (
-    <>
+    <div className="flex-grow flex flex-col max-h-full">
       {
         (pathname.includes('/users') || pathname.includes('/staff') || pathname.includes('/suppliers')) && <UserDataNav />
       }
@@ -31,7 +31,7 @@ const UserData = () => {
           <Suppliers />
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 
