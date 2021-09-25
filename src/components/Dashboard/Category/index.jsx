@@ -36,14 +36,15 @@ export const Card = ({ item, edit, setLoading }) => {
 const ActionsButton = ({ actionsAppear, edit, item, setLoading, setActionsAppear }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(id => deleteCategoryByID(id), {
+    onMutate: () => setLoading(true),
     onSuccess: () => {
+      setLoading(false);
       setActionsAppear(false);
       queryClient.invalidateQueries('categories');
     }
   })
 
-  mutation.isLoading && setLoading(true);
-  mutation.isSuccess && setLoading(false);
+  // mutation.isLoading && setLoading(true);
 
   /* Handlers */
   const handleEditCategory = () => {

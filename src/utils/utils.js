@@ -287,7 +287,7 @@ export const setProductsItemList = (item, idx) => {
     },
     {
       id: 'item-supplier',
-      child: item.supplier.supplier_name,
+      child: item.supplier_name,
       classes: "px-4 w-56 flex items-center justify-start"
     },
     {

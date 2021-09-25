@@ -72,8 +72,8 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
           name: data.data.category.category_name,
         } ,
         supplier: {
-          id: data.data.supplier.id,
-          name: data.data.supplier.supplier_name,
+          id: '',
+          name: data.data.supplier_name
         }
       })
 
@@ -92,36 +92,23 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   const handleSumbitProduct = (e) => {
     e.preventDefault();
 
-    // if (editMode.mode) {
-    //   const data = {}
-    //   for (const data_prop of Object.keys(productDetails)) {
-    //     if (data_prop == 'category' || data_prop == 'supplier') {
-    //       data[`${data_prop}_id`] = productDetails[data_prop].id;
-    //     // } else if (data_prop == 'image') {
-    //     //   data[data_prop] = productDetails[data_prop].upload
-    //     } else {
-    //       data[data_prop] = productDetails[data_prop];
-    //     }
-    //   }
+    const formData = new FormData;
+    if (editMode.mode) {
+      formData.append('_method', 'PUT')
+    }
+    for (const single_data of Object.keys(productDetails)) {
+      if (single_data == 'category') {
+        formData.append(`${single_data}_id`, productDetails[single_data].id)
+      } else if (single_data == 'image') {
+        formData.append(single_data, productDetails[single_data].media)
+      } else if (single_data == 'supplier') { 
+        formData.append(`${single_data}_name`, productDetails[single_data].name)
+      } else {
+        formData.append(single_data, productDetails[single_data]);
+      }
+    }
 
-    //   mutation.mutate(data);
-    // } else if (createMode) {
-      const formData = new FormData;
-      if (editMode.mode) {
-        formData.append('_method', 'PUT')
-      }
-      for (const single_data of Object.keys(productDetails)) {
-        if (single_data == 'category' || single_data == 'supplier') {
-          formData.append(`${single_data}_id`, productDetails[single_data].id)
-        } else if (single_data == 'image') {
-          formData.append(single_data, productDetails[single_data].media)
-        } else {
-          formData.append(single_data, productDetails[single_data]);
-        }
-      }
-  
-      mutation.mutate(formData);
-    // }
+    mutation.mutate(formData);
   }
 
   // handle data sending
@@ -241,7 +228,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
       }
       {
         productDetailsLoading || mutation.isLoading ? (
-          <h1>Loading..</h1>
+          <h1 className="text-xl text-purple-400 font-semibold font-caption">Trying to get current Product Data</h1>
         ) : (
           <>
             <h1 className="text-2xl font-caption text-gray-800">{ editMode.mode ? 'Edit' : createMode ? 'Create' : 'null' } Product</h1>
@@ -316,6 +303,7 @@ const LocalDropdown = ({ items, setDropdownValue, dropdownFor, closeDropdown }) 
   const handleValueSelection = (item) => {
     setDropdownValue(item.id, item[`${dropdownFor}_name`], dropdownFor);
     closeDropdown();
+    // console.log(item);
   }
 
   return (
