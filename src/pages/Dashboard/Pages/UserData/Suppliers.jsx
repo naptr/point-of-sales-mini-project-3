@@ -13,12 +13,15 @@ const Suppliers = () => {
     refetchOnWindowFocus: false
   });
 
-  useEffect(() => suppliers && console.log(suppliers), [suppliers])
+  useEffect(() => suppliers && console.log(suppliers), [ suppliers ])
 
   return (
     <div>
       {
-        suppliers?.data.data.map(supplier => <p>{ supplier.supplier_name }, { supplier.address }</p>)
+        isLoading && <h1>Loading...</h1>
+      }
+      {
+        suppliers?.data.data.map(supplier => <p>{supplier.supplier_name}, {supplier.address}</p>)
       }
     </div>
   );

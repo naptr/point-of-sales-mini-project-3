@@ -178,8 +178,8 @@ export const MainIcons = ({ iconType, size }) => {
       );
     case 'users':
       return (
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          viewBox="0 0 429.453 429.453" enableBackground="w 0 0 429.453 429.453" xml:space="preserve" width={size}>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 429.453 429.453" enableBackground="w 0 0 429.453 429.453" xmlSpace="preserve" width={size}>
           <g>
             <path fill="#4DCFE0" d="M214.727,241.894c-129.045,0-200.098,61.127-200.098,171.886c0,8.882,6.792,15.673,15.673,15.673
 		          h368.849c8.882,0,15.673-6.792,15.673-15.673C414.824,303.02,343.771,241.894,214.727,241.894z"/>

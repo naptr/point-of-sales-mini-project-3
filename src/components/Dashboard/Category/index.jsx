@@ -8,26 +8,17 @@ import { deleteCategoryByID } from '@app/api/dashboard';
 
 
 export const Card = ({ item, edit, setLoading }) => {
-  const queryClient = useQueryClient();
-  const [actionsAppear, setActionsApper] = useState(false);
+  const [actionsAppear, setActionsAppear] = useState(false);
   const cardRef = useRef(null);
-
-  const mutation = useMutation(id => deleteCategoryByID(id), {
-    onSuccess: () => queryClient.invalidateQueries('categories')
-  })
 
 
   /* Handlers */
   const handleActionsAppear = () => {
-    setActionsApper(!actionsAppear);
-  }
-
-  const handleDeleteCategory = () => {
-    mutation.mutate(item.id)
+    setActionsAppear(!actionsAppear);
   }
   /* End of Handlers */
 
-  mutation.isLoading && setLoading(true);
+  // mutation.isLoading && setLoading(true);
   // mutation.isSuccess && setLoading(false);
 
   return (
@@ -36,24 +27,40 @@ export const Card = ({ item, edit, setLoading }) => {
         <p>{ item.category_name }</p>
       </div>
       {
-        <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} deleteCategory={handleDeleteCategory} />
+        <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} setLoading={setLoading} setActionsAppear={setActionsAppear} />
       }
     </div>
   );
 }
 
-const ActionsButton = ({ actionsAppear, edit, item, deleteCategory }) => {
+const ActionsButton = ({ actionsAppear, edit, item, setLoading, setActionsAppear }) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation(id => deleteCategoryByID(id), {
+    onSuccess: () => {
+      setActionsAppear(false);
+      queryClient.invalidateQueries('categories');
+    }
+  })
 
+  mutation.isLoading && setLoading(true);
+  mutation.isSuccess && setLoading(false);
+
+  /* Handlers */
   const handleEditCategory = () => {
     edit(item);
   }
+
+  const handleDeleteCategory = () => {
+    mutation.mutate(item.id);
+  }
+  /* End of Handlers */
 
   return (
     <div className="h-10 flex-grow flex items-center flex-row justify-evenly z-0">
       <button id="edit-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'} h-full w-10 flex items-center justify-center hover:bg-yellow-100 active:bg-white`} onClick={handleEditCategory}>
         <EditIcon size="24px" />
       </button>
-    <button id="delete-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'} h-full w-10  flex items-center justify-center hover:bg-red-100 active:bg-white`} onClick={deleteCategory}>
+    <button id="delete-action" className={`transition-all duration-500 transform ${actionsAppear ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'} h-full w-10  flex items-center justify-center hover:bg-red-100 active:bg-white`} onClick={handleDeleteCategory}>
         <DeleteIcon size="22px" />
       </button>
     </div>

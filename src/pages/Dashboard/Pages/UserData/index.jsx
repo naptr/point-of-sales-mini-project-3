@@ -1,6 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import UserDataNav from '@app/components/Dashboard/UserData/UserDataNav';
 
 import Main from './Main';
 import Staff from './Staff';
@@ -9,8 +10,13 @@ import Users from './Users';
 
 
 const UserData = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
+      {
+        (pathname.includes('/users') || pathname.includes('/staff') || pathname.includes('/suppliers')) && <UserDataNav />
+      }
       <Switch>
         <Route exact path='/dashboard/user-data'>
           <Main />

@@ -107,7 +107,9 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
     //   mutation.mutate(data);
     // } else if (createMode) {
       const formData = new FormData;
-      formData.append('_method', 'PUT')
+      if (editMode.mode) {
+        formData.append('_method', 'PUT')
+      }
       for (const single_data of Object.keys(productDetails)) {
         if (single_data == 'category' || single_data == 'supplier') {
           formData.append(`${single_data}_id`, productDetails[single_data].id)
@@ -157,6 +159,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
 
   // input image handler
   const handleImageInput = (ev) => {
+    console.log(ev.target.files);
     if (ev.target.files && ev.target.files[0]) {
       setProductDetails({
         ...productDetails,
@@ -247,7 +250,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
                 {/* <img src={productDetails.image} className="w-full h-64 object-cover appearance-none" /> */}
                 <div id="image-wrapper" className="h-64 w-full flex items-center shadow-md">
                   <picture className="h-full w-full">
-                      <img src={typeof productDetails.image.media === 'string' ? productDetails.image.media : '/default_user.png' ? parseToURL(productDetails.image.media) : ''} className="h-full w-full object-cover" />
+                      <img src={typeof productDetails.image.media === 'string' ? productDetails.image.media : (productDetails.image.media ? parseToURL(productDetails.image.media) : '/default_user.png')} className="h-full w-full object-cover" />
                   </picture>
                 </div>
                 <div id="file-input-button" className="transition-all h-10 w-full relative shadow-md rounded flex cursor-pointer items-center justify-center hover:transition-colors duration-300 bg-white hover:bg-purple-50 active:bg-white">

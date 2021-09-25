@@ -234,7 +234,15 @@ export const parseURLToTitle = (url) => {
     case 'products':
       return 'Products';
     case 'category-details':
-      return "Category Details"
+      return "Category Details";
+    case 'user-data':
+      return 'User Data';
+    case 'users':
+      return 'Users';
+    case 'staff':
+      return 'Staff';
+    case 'suppliers':
+      return 'Suppliers';
     default:
       throw new Error('None of above condition is choosen');
   }
@@ -296,7 +304,7 @@ export const setProductsItemList = (item, idx) => {
 }
 
 export const itemNumberByPage = (page, itemIdx, dataLength) => {
-  if (dataLength < 10) {
+  if (dataLength < 10 && page == 1) {
     return itemIdx + 1
   } else {
     return (page * 10) - ((page) - (itemIdx + 1)) - (dataLength - page);
