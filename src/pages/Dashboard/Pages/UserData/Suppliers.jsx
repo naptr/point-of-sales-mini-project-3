@@ -32,8 +32,8 @@ const Suppliers = () => {
     setFormAppear(!formAppear);
   }
 
-  return true ? (
-    <SupplierForm closeForm={handleFormAppear} currentItemID={currentItem.id} />
+  return formAppear ? (
+    <SupplierForm closeForm={handleFormAppear} currentItem={currentItem} />
   ) : (
     <div id="suppliers-container-wrapper" className="flex flex-col flex-grow justify-between relative">
       <div id="suppliers-list-title" className="w-full h-10 flex justify-between items-center text-purple-500">

@@ -98,6 +98,12 @@ export const createCategory = async data => {
   return response;
 }
 
+export const createSupplier = async data => {
+  const response = await dashboard.post(`${single_supplier_URL}/add`, data);
+
+  return response;
+}
+
 // Edit
 
 
@@ -119,6 +125,17 @@ export const editProductDetails = async (data, product_id) => {
  */
 export const editCategory = async (data, category_id) => {
   const response = await dashboard.post(`${single_category_URL}/update/${category_id}`, data);
+
+  return response;
+}
+
+/**
+ * Edit Supplier
+ * @param { FormData } data
+ * @param { Number } product_id
+ */
+export const editSupplier = async (data, supplier_id) => {
+  const response = await dashboard.post(`${single_supplier_URL}/update/${supplier_id}`, data);
 
   return response;
 }

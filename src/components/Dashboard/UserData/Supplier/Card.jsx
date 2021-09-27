@@ -37,7 +37,7 @@ const Card = ({ item, setActionsAppear }) => {
         </div>
         <div id="phone_number" className="w-full flex flex-row items-center justify-start space-x-2">
           <PhoneIcon size="24px" color="#1F2937" />
-          <p className="text-gray-800 font-caption text-sm">{item.no_telp}</p>
+          <p className="text-gray-800 font-caption text-sm">{item.phone_number}</p>
         </div>
       </div>
     </div>

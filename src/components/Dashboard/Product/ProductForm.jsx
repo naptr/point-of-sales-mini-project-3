@@ -227,7 +227,7 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
         mutation.isSuccess && <Notificator closeForm={closeFormHandler} message={`Your Product is Successfully ${editMode.mode ? "Updated" : "Created" }`} />
       }
       {
-        productDetailsLoading || mutation.isLoading ? (
+        productDetailsLoading ? (
           <h1 className="text-xl text-purple-400 font-semibold font-caption">Trying to get current Product Data</h1>
         ) : (
           <>
