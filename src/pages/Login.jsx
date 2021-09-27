@@ -4,7 +4,7 @@ import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import NeatLogo from '@app/components/Logo/NeatLogo';
-import { Loader } from '@app/components/Loader';
+import Loader from '@app/components/Loader';
 
 import { auth } from '@app/api/apis';
 import { store } from '@app/utils/state-management/proxy';

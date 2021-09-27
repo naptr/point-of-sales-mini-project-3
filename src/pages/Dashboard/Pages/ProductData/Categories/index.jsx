@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { Card } from '@app/components/Dashboard/Category';
+import Card from '@app/components/Dashboard/Category/Card';
 import { CategoryForm } from '@app/components/Dashboard/Category/CategoryForm';
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
-import { Loader } from '@app/components/Loader';
+import Loader from '@app/components/Loader';
 
 import { getCategories } from '@app/api/dashboard';
 

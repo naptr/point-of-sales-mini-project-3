@@ -2,7 +2,7 @@ import React from 'react';
 import * as Spinner from 'react-spinners';
 
 
-export const Loader = ({ type, color, css, size, height, width, radius, margin, speedMultiplier }) => {
+const Loader = ({ type, color, css, size, height, width, radius, margin, speedMultiplier }) => {
   const LoaderComponent = Spinner[type];
 
   return (
@@ -11,3 +11,5 @@ export const Loader = ({ type, color, css, size, height, width, radius, margin, 
     </>
   );
 }
+
+export default Loader;

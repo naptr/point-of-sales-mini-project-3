@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
-import { Loader } from '@app/components/Loader';
+import Loader from '@app/components/Loader';
 import { Table } from '@app/components/Table';
 import ProductForm from '@app/components/Dashboard/Product/ProductForm';
 

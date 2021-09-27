@@ -6,6 +6,7 @@ const single_product_URL = '/product';
 const categories_URL = '/categories';
 const single_category_URL = '/category';
 const suppliers_URL = '/suppliers';
+const single_supplier_URL = '/supplier';
 
 
 /**
@@ -65,6 +66,12 @@ export const deleteProductByID = async id => {
 
 export const deleteCategoryByID = async id => {
   const response = await dashboard.delete(`${single_category_URL}/delete/${id}`);
+
+  return response;
+}
+
+export const deleteSupplierByID = async id => {
+  const response = await dashboard.delete(`${single_supplier_URL}/delete/${id}`);
 
   return response;
 }

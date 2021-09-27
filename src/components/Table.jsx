@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQueryClient, useMutation } from 'react-query';
 
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
-import { Loader } from '@app/components/Loader';      
+import Loader from '@app/components/Loader';      
 
 import { setProductsItemList, itemNumberByPage } from '@app/utils/utils';
 import { deleteProductByID } from '@app/api/dashboard';
@@ -63,6 +63,7 @@ export const ColumnComponent = ({ item, idx, setLoading, editItem, handleFormApp
   const mutation = useMutation(id => deleteProductByID(id), {
     onSuccess: () => {
       queryClient.invalidateQueries('products');
+      queryClient.invalidateQueries('categories');
       // console.log(data);
     }
   });

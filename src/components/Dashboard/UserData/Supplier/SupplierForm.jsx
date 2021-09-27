@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
-const SupplierForm = () => {
+const SupplierForm = ({ closeForm, currentItemID }) => {
 
   /* Handlers */
   const handleFormSubmit = event => {
     event.preventDefault();
     console.log('test')
   }
+
+  const handleCloseForm = () => {
+    closeForm();
+  }
+
+  useEffect(() => console.log(currentItemID), []);
 
   return (
     <div>
@@ -20,7 +26,7 @@ const SupplierForm = () => {
             <input />
           </div>
           <div id="buttons">
-            <button id="cancel" type="button">Cancel</button>
+            <button id="cancel" type="button" onClick={handleCloseForm}>Cancel</button>
             <input type="submit" value="Save" />
           </div>
         </div>

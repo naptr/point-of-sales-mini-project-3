@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
+import { Fill } from '@app/components/Icons';
 
 import { deleteCategoryByID } from '@app/api/dashboard';
 
 
-export const Card = ({ item, edit, setLoading }) => {
+const Card = ({ item, edit, setLoading }) => {
   const [actionsAppear, setActionsAppear] = useState(false);
   const cardRef = useRef(null);
 
@@ -22,9 +23,13 @@ export const Card = ({ item, edit, setLoading }) => {
   // mutation.isSuccess && setLoading(false);
 
   return (
-    <div id="card-wrapper" className="w-full h-18 flex items-start flex-row justify-start">
-      <div ref={cardRef} className="bg-purple-100 hover:shadow-md active:shadow-none transition-all duration-300 rounded h-full w-5/6 font-caption flex items-center justify-center font-semibold text-gray-800 z-10 cursor-pointer" onClick={handleActionsAppear}>
+    <div id="card-wrapper" className="w-full h-18 flex items-start flex-row">
+      <div ref={cardRef} className="py-2 px-4 bg-purple-100 hover:shadow-md flex-col justify-center active:shadow-none transition-all duration-300 rounded h-full w-5/6 font-caption flex items-start font-semibold text-gray-800 z-10 cursor-pointer" onClick={handleActionsAppear}>
         <p>{ item.category_name }</p>
+        <div id="category-detail" className="flex-grow w-full justify-start items-center flex flex-row space-x-2">
+          <Fill name="product_data" size={18} color="#1F2937" />
+          <p>{item.qty_product}</p>
+        </div>
       </div>
       {
         <ActionsButton actionsAppear={actionsAppear} edit={edit} item={item} setLoading={setLoading} setActionsAppear={setActionsAppear} />
@@ -32,6 +37,8 @@ export const Card = ({ item, edit, setLoading }) => {
     </div>
   );
 }
+
+export default Card;
 
 const ActionsButton = ({ actionsAppear, edit, item, setLoading, setActionsAppear }) => {
   const queryClient = useQueryClient();
