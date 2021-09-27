@@ -33,7 +33,7 @@ const Categories = () => {
   }
 
   const handleCloseForm = () => {
-    setFormActive(true)
+    setFormActive(!formActive)
   }
   /* End of Handlers */
 

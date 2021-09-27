@@ -268,7 +268,7 @@ export const setProductsItemList = (item, idx) => {
         width: '48',
         height: '48'
       }),
-      classes: "px-4 w-20 flex items-center justify-start"
+      classes: "px-4 w-20 flex items-center justify-start h-12 object-cover"
     },
     {
       id: 'item-name',
