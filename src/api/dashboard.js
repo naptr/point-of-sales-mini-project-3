@@ -35,6 +35,10 @@ export const getSuppliers = async () => {
   return suppliers;
 }
 
+// export const getSupplierDetailsByID = async id => {
+//   const details = await dashboard.get(`${}`)
+// }
+
 // Categories APIs
 export const getCategories = async () => {
   const categories = await dashboard.get(categories_URL);

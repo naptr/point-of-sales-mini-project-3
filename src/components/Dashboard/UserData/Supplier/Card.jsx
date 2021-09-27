@@ -14,7 +14,7 @@ const SupplierCard = ({ item, formAppear }) => {
   }
 
   return (
-    <div id="supplier-card" className="h-48 relative flex flex-row items-center justify-center space-x-4">
+    <div id="supplier-card" className="h-48 relative flex flex-row items-center justify-center">
       <Card item={item} setActionsAppear={handleActionsButton} />
       <ActionsButton appear={actionsAppear} handleFormAppear={() => formAppear(item)} id={item.id} />
     </div>
