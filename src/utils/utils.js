@@ -142,7 +142,7 @@ export const USERS_NAVIGATION_DATA = [
 
 export const REPORTS_NAVIGATION_DATA = [
   {
-    path: `${main_url}/check-out/histories/all-histories`,
+    path: `${main_url}/reports/all-histories`,
     state: {
       id: 1,
       name: 'all-histories',
@@ -154,7 +154,7 @@ export const REPORTS_NAVIGATION_DATA = [
     }
   },
   {
-    path: `${main_url}/check-out/histories/histories-by-date`,
+    path: `${main_url}/reports/histories-by-date`,
     state: {
       id: 2,
       name: 'histories-by-date',
@@ -271,6 +271,12 @@ export const parseURLToTitle = (url) => {
       return 'Staff';
     case 'suppliers':
       return 'Suppliers';
+    case 'reports':
+      return 'Reports';
+    case 'all-histories':
+      return 'Histories';
+    case 'histories-by-date':
+      return 'Histories By Date';
     default:
       throw new Error('None of above condition is choosen');
   }
@@ -337,4 +343,8 @@ export const itemNumberByPage = (page, itemIdx, dataLength) => {
   } else {
     return (page * 10) - ((page) - (itemIdx + 1)) - (dataLength - page);
   }
+}
+
+export const dateParserWithRegex = date => {
+  return JSON.stringify(date).match(/(\d{4}-\d{2}-\d{2})/g)[ 0 ];
 }

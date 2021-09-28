@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import SupplierCard from '@app/components/Dashboard/UserData/Supplier/Card';
+import Card from '@app/components/Dashboard/UserData/Supplier/Card';
 import Loader from '@app/components/Loader';
 
 import { getSuppliers } from '@app/api/dashboard';
@@ -52,7 +52,7 @@ const Suppliers = () => {
         suppliers && 
         <div id="suppliers-wrapper" className="w-full grid grid-cols-4 gap-6 place-content-start py-4 overflow-auto" style={{height: 771+'px'}}>
           {
-            suppliers?.data.data.map(supplier => <SupplierCard key={supplier.id} item={supplier} formAppear={handleFormAppear} />)
+            suppliers?.data.data.map(supplier => <Card key={supplier.id} item={supplier} formAppear={handleFormAppear} />)
           }
         </div>
       }

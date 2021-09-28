@@ -50,6 +50,12 @@ export const getOrderHistories = async () => {
   return histories;
 }
 
+export const getOrderHistoriesByDate = async queryParams => {
+  const histories_by_date = await dashboard.get(`${histories_URL}/sorting/search?${queryParams}`);
+  
+  return histories_by_date;
+}
+
 // Multiple Requests
 export const getMultipleRequest = async requests => {
   try {
