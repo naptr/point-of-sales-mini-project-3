@@ -6,10 +6,11 @@ import { createElement } from 'react';
  * Objects and Contstantas
  */
 export const REM = 16;
+const main_url = store.dashboard_url;
 
 export const sidebarItem = [
   {
-    path: `${store.dashboard_url}`,
+    path: `${main_url}`,
     singlePath: 'here-dashboard',
     state: {
       id: 1,
@@ -18,7 +19,7 @@ export const sidebarItem = [
     },
   },
   {
-    path: `${store.dashboard_url}/user-data`,
+    path: `${main_url}/user-data`,
     singlePath: '/user-data',
     state: {
       id: 2,
@@ -27,7 +28,7 @@ export const sidebarItem = [
     }
   },
   {
-    path: `${store.dashboard_url}/product-data`,
+    path: `${main_url}/product-data`,
     singlePath: '/product-data',
     state: {
       id: 3,
@@ -36,7 +37,7 @@ export const sidebarItem = [
     }
   },
   {
-    path: `${store.dashboard_url}/search`,
+    path: `${main_url}/search`,
     singlePath: '/search',
     state: {
       id: 4,
@@ -45,7 +46,7 @@ export const sidebarItem = [
     }
   },
   {
-    path: `${store.dashboard_url}/transactions`,
+    path: `${main_url}/transactions`,
     singlePath: '/transactions',
     state: {
       id: 5,
@@ -54,7 +55,7 @@ export const sidebarItem = [
     }
   },
   {
-    path: `${store.dashboard_url}/reports`,
+    path: `${main_url}/reports`,
     singlePath: '/reports',
     state: {
       id: 6,
@@ -63,7 +64,7 @@ export const sidebarItem = [
     }
   }, 
   {
-    path: `${store.dashboard_url}/settings`,
+    path: `${main_url}/settings`,
     singlePath: '/settings',
     state: {
       id: 7,
@@ -73,9 +74,9 @@ export const sidebarItem = [
   }
 ];
 
-export const product_data = [
+export const PRODUCTS_NAVIGATION_DATA = [
   {
-    path: `${store.dashboard_url}/product-data/products`,
+    path: `${main_url}/product-data/products`,
     state: {
       id: 1,
       name: 'products',
@@ -87,7 +88,7 @@ export const product_data = [
     }
   },
   {
-    path: `${store.dashboard_url}/product-data/categories`,
+    path: `${main_url}/product-data/categories`,
     state: {
       id: 2,
       name: 'categories',
@@ -100,9 +101,9 @@ export const product_data = [
   }
 ]
 
-export const users_data = [
+export const USERS_NAVIGATION_DATA = [
   {
-    path: `${store.dashboard_url}/user-data/users`,
+    path: `${main_url}/user-data/users`,
     state: {
       id: 1,
       name: 'users',
@@ -114,7 +115,7 @@ export const users_data = [
     }
   },
   {
-    path: `${store.dashboard_url}/user-data/staff`,
+    path: `${main_url}/user-data/staff`,
     state: {
       id: 2,
       name: 'staff',
@@ -126,7 +127,7 @@ export const users_data = [
     }
   },
   {
-    path: `${store.dashboard_url}/user-data/suppliers`,
+    path: `${main_url}/user-data/suppliers`,
     state: {
       id: 3,
       name: 'suppliers',
@@ -134,6 +135,33 @@ export const users_data = [
       description: `
         Here you can find the list of suppliers who supply the products,
         only the suppliers, not the staff nor the users
+      `
+    }
+  }
+]
+
+export const REPORTS_NAVIGATION_DATA = [
+  {
+    path: `${main_url}/check-out/histories/all-histories`,
+    state: {
+      id: 1,
+      name: 'all-histories',
+      textContent: 'Histories',
+      description: `
+        Where all histories of user's transactions were stored here,
+        go and check it by yourself.
+      `
+    }
+  },
+  {
+    path: `${main_url}/check-out/histories/histories-by-date`,
+    state: {
+      id: 2,
+      name: 'histories-by-date',
+      textContent: 'Histories per Date',
+      description: `
+        Queried Histories sorted by Date, ranged from - to as you like.
+        That's it.
       `
     }
   }

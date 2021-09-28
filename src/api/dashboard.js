@@ -7,6 +7,7 @@ const categories_URL = '/categories';
 const single_category_URL = '/category';
 const suppliers_URL = '/suppliers';
 const single_supplier_URL = '/supplier';
+const histories_URL = '/check-out/histories';
 
 
 /**
@@ -15,7 +16,7 @@ const single_supplier_URL = '/supplier';
  * @returns 
  */
 
-// Product APIs
+// Product
 export const getProducts = async (page = 1) => {
   const products = await dashboard.get(`${products_URL}?page=${page}`);
 
@@ -28,22 +29,25 @@ export const getProductDetailsByID = async id => {
   return details;
 }
 
-// Suplliers APIs
+// Suplliers
 export const getSuppliers = async () => {
   const suppliers = await dashboard.get(suppliers_URL);
 
   return suppliers;
 }
 
-// export const getSupplierDetailsByID = async id => {
-//   const details = await dashboard.get(`${}`)
-// }
-
-// Categories APIs
+// Categories
 export const getCategories = async () => {
   const categories = await dashboard.get(categories_URL);
 
   return categories;
+}
+
+// Reports  
+export const getOrderHistories = async () => {
+  const histories = await dashboard.get(histories_URL);
+
+  return histories;
 }
 
 // Multiple Requests

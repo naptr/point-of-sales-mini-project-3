@@ -8,7 +8,7 @@ import { setProductsItemList, itemNumberByPage } from '@app/utils/utils';
 import { deleteProductByID } from '@app/api/dashboard';
 
 
-export const ProductTable = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {
+const ProductTable = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {
 
   return (
     <div id="content-table-wrapper" className="flex flex-col">
@@ -47,8 +47,10 @@ export const ProductTable = ({ tableBodyData, tableHeadData, loading, fetching, 
   );
 }
 
+export default ProductTable;
+
 // Table Components
-export const RowComponent = props => {
+const RowComponent = props => {
   const { children } = props;
 
   return (
@@ -58,7 +60,7 @@ export const RowComponent = props => {
   );
 }
 
-export const ColumnComponent = ({ item, idx, setLoading, editItem, handleFormAppear }) => {
+const ColumnComponent = ({ item, idx, setLoading, editItem, handleFormAppear }) => {
   const bodyDatas = setProductsItemList(item, idx);
   const queryClient = useQueryClient();
   const mutation = useMutation(id => deleteProductByID(id), {

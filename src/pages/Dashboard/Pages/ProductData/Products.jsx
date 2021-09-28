@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
 import Loader from '@app/components/Loader';
-import { ProductTable } from '@app/components/ProductTable';
+import ProductTable from '@app/components/Dashboard/Product/ProductTable';
 import ProductForm from '@app/components/Dashboard/Product/ProductForm';
 
 import { getProducts } from '@app/api/dashboard';
