@@ -3,9 +3,11 @@ import React from 'react';
 
 const Reports = () => {
   return (
-    <>
-      <h1>Reports</h1>
-    </>
+    <div id="reports-page-container" className="h-full w-full">
+      <h1>
+        Reports
+      </h1>
+    </div>
   );
 }
 

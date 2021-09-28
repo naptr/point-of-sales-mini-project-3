@@ -266,9 +266,9 @@ export const setProductsItemList = (item, idx) => {
       child: createElement('img', {
         src: item.image,
         width: '48',
-        height: '48'
+        height: '48',
       }),
-      classes: "px-4 w-20 flex items-center justify-start h-12 object-cover"
+      classes: "px-4 w-20 flex items-center justify-start h-12"
     },
     {
       id: 'item-name',

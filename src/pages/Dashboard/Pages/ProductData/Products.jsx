@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
 import Loader from '@app/components/Loader';
-import { Table } from '@app/components/Table';
+import { ProductTable } from '@app/components/ProductTable';
 import ProductForm from '@app/components/Dashboard/Product/ProductForm';
 
 import { getProducts } from '@app/api/dashboard';
@@ -17,10 +17,6 @@ const Products = () => {
     item_id: ''
   });
   const [createMode, setCreateMode] = useState(false);
-  // const [formMode, setFormMode] = useState({
-  //   mode: '',
-  //   item_id: ''
-  // })
 
   // Pagination and Data Consts
   const [page, setPage] = useState(1);
@@ -75,9 +71,6 @@ const Products = () => {
     formAppearHandler();
   }
 
-
-  useEffect(() => console.log(editMode, createMode), [editMode, createMode]);
-
   return formAppear ? (
     <ProductForm editMode={editMode} createMode={createMode} closeForm={() => [
       () => closeCreateModeHandler(), 
@@ -97,7 +90,7 @@ const Products = () => {
           <p>New Product</p>
         </button>
       </div>
-      <Table tableBodyData={products?.data.data} tableHeadData={products_table_heads} loading={isLoading} fetching={isFetching} error={isError} errorMessage={error} handleLoading={dataLoadingHandler} editMode={setEditMode} handleFormAppear={formAppearHandler} />
+      <ProductTable tableBodyData={products?.data.data} tableHeadData={products_table_heads} loading={isLoading} fetching={isFetching} error={isError} errorMessage={error} handleLoading={dataLoadingHandler} editMode={setEditMode} handleFormAppear={formAppearHandler} />
       <div className="flex flex-row h-8 max-w-max font-caption text-sm bg-purple-200">
         <button className="px-2 transition-all disabled:opacity-50 text-purple-500 font-semibold duration-300 flex items-center justify-center hover:bg-purple-300" onClick={() => setPage(1)} disabled={products?.data.data.current_page == 1}>
           First

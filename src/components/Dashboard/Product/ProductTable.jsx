@@ -8,7 +8,8 @@ import { setProductsItemList, itemNumberByPage } from '@app/utils/utils';
 import { deleteProductByID } from '@app/api/dashboard';
 
 
-export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {
+export const ProductTable = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {
+
   return (
     <div id="content-table-wrapper" className="flex flex-col">
       <div id="table-wrapper" className="flex flex-col min-h-custom space-y-1">
@@ -35,8 +36,8 @@ export const Table = ({ tableBodyData, tableHeadData, loading, fetching, error, 
             ) : error ? ( // error
               <span>an error occured: { errorMessage } </span>
             ) : (
-              tableBodyData.data.map((product, idx) => ( // column_data
-                <ColumnComponent item={product} key={idx} idx={itemNumberByPage(tableBodyData.current_page, idx, (tableBodyData.data).length)} setLoading={handleLoading} editItem={editMode} handleFormAppear={handleFormAppear} />
+              tableBodyData?.data.map((product, idx) => ( // column_data
+                <ColumnComponent item={product} key={idx} idx={itemNumberByPage(tableBodyData?.current_page, idx, (tableBodyData?.data).length)} setLoading={handleLoading} editItem={editMode} handleFormAppear={handleFormAppear} />
               ))
             )
           }
