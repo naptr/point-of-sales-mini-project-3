@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import Notificator from '@app/components/Dashboard/Notificator';
 
-import { editSupplier, createSupplier } from '@app/api/dashboard';
+import { editSupplier, createSupplier } from '@app/api/dashboard_apis';
 
 
 const SupplierForm = ({ closeForm, currentItem }) => {

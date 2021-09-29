@@ -50,7 +50,7 @@ export const getOrderHistories = async () => {
   return histories;
 }
 
-export const getOrderHistoriesByDate = async queryParams => {
+export const getHistoriesWithFilter = async queryParams => {
   const histories_by_date = await dashboard.get(`${histories_URL}/sorting/search?${queryParams}`);
   
   return histories_by_date;

@@ -7,9 +7,9 @@ import {
   getProductDetailsByID, 
   createProduct, 
   editProductDetails,
-} from '@app/api/dashboard';
+} from '@app/api/dashboard_apis';
 import { dashboard } from '@app/api/apis';
-import { getMultipleRequest } from '@app/api/dashboard';
+import { getMultipleRequest } from '@app/api/dashboard_apis';
 
 
 const ProductForm = ({ editMode, createMode, closeForm }) => {

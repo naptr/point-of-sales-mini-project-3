@@ -5,7 +5,7 @@ import { EditIcon, DeleteIcon } from '@app/components/Icons';
 import Loader from '@app/components/Loader';      
 
 import { setProductsItemList, itemNumberByPage } from '@app/utils/utils';
-import { deleteProductByID } from '@app/api/dashboard';
+import { deleteProductByID } from '@app/api/dashboard_apis';
 
 
 const ProductTable = ({ tableBodyData, tableHeadData, loading, fetching, error, errorMessage, handleLoading, editMode, handleFormAppear }) => {

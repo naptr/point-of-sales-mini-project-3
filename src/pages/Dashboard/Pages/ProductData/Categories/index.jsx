@@ -7,7 +7,7 @@ import { CategoryForm } from '@app/components/Dashboard/Category/CategoryForm';
 import { PreviousPageIcon, NextPageIcon } from '@app/components/Icons';
 import Loader from '@app/components/Loader';
 
-import { getCategories } from '@app/api/dashboard';
+import { getCategories } from '@app/api/dashboard_apis';
 
 
 const Categories = () => {

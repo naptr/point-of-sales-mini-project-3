@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { AddressIcon, PhoneIcon, EditIcon, DeleteIcon } from '@app/components/Icons';
 import { useMutation, useQueryClient } from 'react-query';
-import { deleteSupplierByID } from '@app/api/dashboard';
+import { deleteSupplierByID } from '@app/api/dashboard_apis';
 
 
 const Card = ({ item, formAppear }) => {

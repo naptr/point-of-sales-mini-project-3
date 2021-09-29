@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import Card from '@app/components/Dashboard/UserData/Supplier/Card';
 import Loader from '@app/components/Loader';
 
-import { getSuppliers } from '@app/api/dashboard';
+import { getSuppliers } from '@app/api/dashboard_apis';
 import SupplierForm from '@app/components/Dashboard/UserData/Supplier/SupplierForm';
 
 const Suppliers = () => {

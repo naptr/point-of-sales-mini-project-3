@@ -22,10 +22,10 @@ const weekdays = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 
 const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) => {
 
-  useEffect(() => calendars && console.log(calendars));
+  // useEffect(() => calendars && console.log(calendars));
 
   return calendars.length ? (
-    <div id="calendar-wrapper" className="max-w-max max-h-80 text-sm p-4 flex flex-col shadow-around rounded-md font-body text-gray-700">
+    <div id="calendar-wrapper" className="max-w-max text-sm p-4 flex flex-col shadow-around rounded-md font-body text-gray-700">
       {
         calendars.map(calendar => (
           <>
@@ -65,13 +65,13 @@ const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) =>
                         }
 
                         const { date, selected, selectable, today, prevMonth, nextMonth } = dateObj;
-                        let day_style = today ? 'text-purple-500 border-2 border-purple-500' : '';
-                        day_style = selected ? 'text-white bg-purple-500' : day_style;
+                        let day_style = today ? ' rounded-full bg-purple-200' : '';
+                        day_style = selected ? 'text-white bg-purple-500 rounded-full ' : day_style;
                         day_style = !selectable ? 'bg-red' : day_style;
                         day_style = prevMonth || nextMonth ? 'text-gray-400' : day_style;
 
                         return (
-                          <button className={`${day_style} w-10 h-10 font-body flex items-center justify-center rounded font-semibold text-gray-700`} {...getDateProps({ dateObj })}>
+                          <button className={`${day_style} transition-all duration-300 w-10 h-10 font-body flex items-center justify-center font-semibold text-gray-700`} {...getDateProps({ dateObj })}>
                             {
                               selectable && date.getDate()
                             }

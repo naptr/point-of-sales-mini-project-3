@@ -3,7 +3,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 
 import AllHistories from './AllHistories';
 import Main from './Main';
-import HistoriesByDate from './HistoriesByDate';
+import HistoriesWithFilter from './HistoriesWithFilter';
 
 import ReportsNav from '@app/components/Dashboard/Reports/ReportsNav';
 
@@ -14,7 +14,7 @@ const Reports = () => {
   return (
     <div className="flex-grow flex flex-col max-h-full">
       {
-        (location.pathname.includes('/all-histories') || location.pathname.includes('/histories-by-date')) && <ReportsNav />
+        (location.pathname.includes('/all-histories') || location.pathname.includes('/histories-with-filter')) && <ReportsNav />
       }
       <Switch>
         <Route path='/dashboard/reports' exact>
@@ -23,8 +23,8 @@ const Reports = () => {
         <Route path='/dashboard/reports/all-histories'>
           <AllHistories />
         </Route>
-        <Route path='/dashboard/reports/histories-by-date'>
-          <HistoriesByDate />
+        <Route path='/dashboard/reports/histories-with-filter'>
+          <HistoriesWithFilter />
         </Route>
       </Switch>
     </div>

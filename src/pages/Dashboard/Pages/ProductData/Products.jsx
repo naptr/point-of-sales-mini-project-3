@@ -6,7 +6,7 @@ import Loader from '@app/components/Loader';
 import ProductTable from '@app/components/Dashboard/Product/ProductTable';
 import ProductForm from '@app/components/Dashboard/Product/ProductForm';
 
-import { getProducts } from '@app/api/dashboard';
+import { getProducts } from '@app/api/dashboard_apis';
 import { products_table_heads } from '@app/utils/utils';
 
 

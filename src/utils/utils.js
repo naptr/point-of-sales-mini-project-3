@@ -154,13 +154,14 @@ export const REPORTS_NAVIGATION_DATA = [
     }
   },
   {
-    path: `${main_url}/reports/histories-by-date`,
+    path: `${main_url}/reports/histories-with-filter`,
     state: {
       id: 2,
-      name: 'histories-by-date',
-      textContent: 'Histories per Date',
+      name: 'histories-with-filter',
+      textContent: 'Histories with Filter',
       description: `
-        Queried Histories sorted by Date, ranged from - to as you like.
+        Queried Histories sorted by Queries.
+        Queries Provided by is: Date Range, Transaction Number, Cashier Number, Customer Number
         That's it.
       `
     }
@@ -168,11 +169,6 @@ export const REPORTS_NAVIGATION_DATA = [
 ]
 
 export const products_table_heads = [
-  // {
-  //   id: 'product-number',
-  //   textContent: 'No',
-  //   classes: "px-4 w-24 flex items-center justify-center"
-  // },
   {
     id: 'product-number',
     textContent: 'No',
@@ -275,7 +271,7 @@ export const parseURLToTitle = (url) => {
       return 'Reports';
     case 'all-histories':
       return 'Histories';
-    case 'histories-by-date':
+    case 'histories-with-filter':
       return 'Histories By Date';
     default:
       throw new Error('None of above condition is choosen');
@@ -285,11 +281,6 @@ export const parseURLToTitle = (url) => {
 
 export const setProductsItemList = (item, idx) => {
   return [
-    // {
-    //   id: 'item-number',
-    //   child: key,
-    //   classes: "px-4 w-24 flex items-center justify-center"
-    // },
     {
       id: 'item-number',
       child: idx,

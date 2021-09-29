@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { getOrderHistories } from '../../../../api/dashboard';
+import { getOrderHistories } from '@app/api/dashboard_apis';
 
 
 const AllHistories = () => {

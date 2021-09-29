@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import Notificator from '@app/components/Dashboard/Notificator';
 
-import { editCategory, createCategory } from '@app/api/dashboard';
+import { editCategory, createCategory } from '@app/api/dashboard_apis';
 
 
 export const CategoryForm = ({ currentCategoryData, closeForm, setLoading }) => {

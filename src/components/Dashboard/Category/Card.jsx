@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
 import { Fill } from '@app/components/Icons';
 
-import { deleteCategoryByID } from '@app/api/dashboard';
+import { deleteCategoryByID } from '@app/api/dashboard_apis';
 
 
 const Card = ({ item, edit, setLoading }) => {
