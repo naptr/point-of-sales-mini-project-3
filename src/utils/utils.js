@@ -211,6 +211,43 @@ export const products_table_heads = [
   }
 ]
 
+export const transaction_histories_head = [
+  {
+    id: 'id',
+    textContent: 'ID',
+    classes: "px-4 w-24 flex items-center justify-center"
+  },
+  {
+    id: 'transaction-number',
+    textContent: 'Transaction Number',
+    classes: "px-4 w-56 flex items-center justify-start"
+  },
+  {
+    id: 'qty',
+    textContent: 'Product Quantity',
+    classes: "px-4 w-48 flex items-center justify-center"
+  },
+  {
+    id: 'subtotal',
+    textContent: 'Total',
+    classes: "px-4 w-48 flex items-center justify-start"
+  },
+  {
+    id: 'customer-id',
+    textContent: 'Customer ID',
+    classes: "px-4 w-36 flex items-center justify-center"
+  },
+  {
+    id: 'cashier-id',
+    textContent: 'Cashier ID',
+    classes: "px-4 w-36 flex items-center justify-center"
+  },
+  {
+    id: 'transaction-date',
+    textContent: 'Date',
+    classes: "px-4 w-48 flex items-center justify-start"
+  }
+]
 
 /**
  * Functions Utils
@@ -322,10 +359,50 @@ export const setProductsItemList = (item, idx) => {
     },
     {
       id: 'item-price',
-      child: new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.price),
+      child: `Rp${new Intl.NumberFormat('id-ID').format(item.price)},00`,
       classes: "px-4 w-48 flex items-center justify-start"
     }
   ];
+}
+
+export const createTransactionRowData = data => {
+  return [
+    {
+      id: 'id',
+      child: data.id,
+      classes: "px-4 w-24 flex items-center justify-center"
+    },
+    {
+      id: 'transaction-number',
+      child: data.no_transaction,
+      classes: "px-4 w-56 flex items-center justify-start"
+    },
+    {
+      id: 'qty',
+      child: data.qty_product,
+      classes: "px-4 w-48 flex items-center justify-center"
+    },
+    {
+      id: 'subtotal',
+      child: `Rp${new Intl.NumberFormat('id-ID').format(data.subtotal)},00`,
+      classes: "px-4 w-48 flex items-center justify-start"
+    },
+    {
+      id: 'customer-id',
+      child: data.customer_id,
+      classes: "px-4 w-36 flex items-center justify-center"
+    },
+    {
+      id: 'cashier-id',
+      child: data.kasir_id,
+      classes: "px-4 w-36 flex items-center justify-center"
+    },
+    {
+      id: 'transaction-date',
+      child: data.date,
+      classes: "px-4 w-48 flex items-center justify-start"
+    }
+  ]
 }
 
 export const itemNumberByPage = (page, itemIdx, dataLength) => {

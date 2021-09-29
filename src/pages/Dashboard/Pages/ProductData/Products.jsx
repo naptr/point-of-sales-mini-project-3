@@ -7,8 +7,6 @@ import ProductTable from '@app/components/Dashboard/Product/ProductTable';
 import ProductForm from '@app/components/Dashboard/Product/ProductForm';
 
 import { getProducts } from '@app/api/dashboard_apis';
-import { products_table_heads } from '@app/utils/utils';
-
 
 const Products = () => {
   const [loading, setLoading] = useState(false);
@@ -90,7 +88,7 @@ const Products = () => {
           <p>New Product</p>
         </button>
       </div>
-      <ProductTable tableBodyData={products?.data.data} tableHeadData={products_table_heads} loading={isLoading} fetching={isFetching} error={isError} errorMessage={error} handleLoading={dataLoadingHandler} editMode={setEditMode} handleFormAppear={formAppearHandler} />
+      <ProductTable tableBodyData={products?.data.data}  loading={isLoading} fetching={isFetching} error={isError} errorMessage={error} handleLoading={dataLoadingHandler} editMode={setEditMode} handleFormAppear={formAppearHandler} />
       <div className="flex flex-row h-8 max-w-max font-caption text-sm bg-purple-200">
         <button className="px-2 transition-all disabled:opacity-50 text-purple-500 font-semibold duration-300 flex items-center justify-center hover:bg-purple-300" onClick={() => setPage(1)} disabled={products?.data.data.current_page == 1}>
           First

@@ -56,6 +56,12 @@ export const getHistoriesWithFilter = async queryParams => {
   return histories_by_date;
 }
 
+export const getOrderHistoryDetails = async transaction_number => {
+  const details = await dashboard.get(`${histories_URL}/${transaction_number}`);
+
+  return details;
+}
+
 // Multiple Requests
 export const getMultipleRequest = async requests => {
   try {

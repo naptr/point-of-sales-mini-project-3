@@ -19,12 +19,9 @@ const Card = ({ item, edit, setLoading }) => {
   }
   /* End of Handlers */
 
-  // mutation.isLoading && setLoading(true);
-  // mutation.isSuccess && setLoading(false);
-
   return (
     <div id="card-wrapper" className="w-full h-18 flex items-start flex-row">
-      <div ref={cardRef} className="py-2 px-4 bg-purple-100 hover:shadow-md flex-col justify-center active:shadow-none transition-all duration-300 rounded h-full w-5/6 font-caption flex items-start font-semibold text-gray-800 z-10 cursor-pointer" onClick={handleActionsAppear}>
+      <div ref={cardRef} className="py-2 px-4 bg-white hover:bg-purple-100 shadow-md flex-col justify-center active:bg-white transition-all duration-300 rounded h-full w-5/6 font-caption flex items-start font-semibold text-gray-800 z-10 cursor-pointer" onClick={handleActionsAppear}>
         <p>{ item.category_name }</p>
         <div id="category-detail" className="flex-grow w-full justify-start items-center flex flex-row space-x-2">
           <Fill name="product_data" size={18} color="#1F2937" />

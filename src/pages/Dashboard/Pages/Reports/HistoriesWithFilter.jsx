@@ -42,9 +42,9 @@ const HistoriesWithFilter = () => {
   const [queries, setQueries] = useState({
     fromDate: null,
     toDate: null,
-    transactionNumber: null,
-    cashierID: null,
-    customerID: null
+    transactionNumber: '',
+    cashierID: '',
+    customerID: ''
   })
   /* End of Filter Data */
 
@@ -71,11 +71,13 @@ const HistoriesWithFilter = () => {
     try {
       const result = await getHistoriesWithFilter(queryParams.join('&'));
 
-      console.log(result);
+      setFilteredHistories(result.data.data);
     } catch (error) {
       console.log(error);
     }
   }
+
+  useEffect(() => console.log(filteredHistories), [filteredHistories]);
 
   return (
     <div id="histories-with-filter-container-wrapper" className="flex flex-col flex-grow justify-between relative">
@@ -106,7 +108,10 @@ const HistoriesWithFilter = () => {
       }
       <button onClick={handleSortingSubmit}>
       Click
-    </button>
+      </button>
+      {
+        filteredHistories && filteredHistories.map(history => <pre>{JSON.stringify(history, null, 2)}</pre>)
+      }
     </div>
   );
 }

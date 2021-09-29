@@ -33,8 +33,12 @@ module.exports = {
         '50': '12.5rem'
       },
       height: {
-        'custom-height': '656px',
-        'another-custom-height': '888px'
+        'custom-560': '560px',
+        'custom-608': '608px',
+        'custom-656': '656px',
+        'custom-704': '704px',
+        'custom-708': '708px',
+        'custom-888': '888px'
       }
     }
   },
