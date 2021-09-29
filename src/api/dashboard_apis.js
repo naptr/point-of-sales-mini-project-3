@@ -16,6 +16,13 @@ const histories_URL = '/check-out/histories';
  * @returns 
  */
 
+// Dashboard
+export const getDashboardData = async () => {
+  const data = await dashboard.get(`/dashboard`);
+
+  return data;
+}
+
 // Product
 export const getProducts = async (page = 1) => {
   const products = await dashboard.get(`${products_URL}?page=${page}`);
