@@ -38,6 +38,7 @@ module.exports = {
         'custom-656': '656px',
         'custom-704': '704px',
         'custom-708': '708px',
+        'custom-771': '771px',  
         'custom-888': '888px'
       }
     }

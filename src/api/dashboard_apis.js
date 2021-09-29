@@ -50,7 +50,7 @@ export const getCategories = async () => {
   return categories;
 }
 
-// Reports  
+// Transactions  
 export const getOrderHistories = async () => {
   const histories = await dashboard.get(histories_URL);
 

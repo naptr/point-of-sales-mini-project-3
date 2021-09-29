@@ -23,7 +23,7 @@ const ReportsTable = ({ bodyData, getOrderDetails, getDataLoading }) => {
         {
           getDataLoading ? (
             <div className="h-full w-full flex items-center justify-center">
-              <Loader type="BarLoader" width="100px" height="4px" speedMultiplier={2} color="#8B5CF6" />
+              <Loader type="BarLoader" width="75px" height="4px" speedMultiplier={2} color="#8B5CF6" />
             </div>
           ) : (
             bodyData?.map(body => (

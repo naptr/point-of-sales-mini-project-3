@@ -84,34 +84,40 @@ const HistoriesWithFilter = () => {
       <div id="histories-title" className="w-full h-10 flex justify-between items-center text-purple-500">
         <h2 className="text-xl font-semibold italic font-caption">Transaction Histories with Filter</h2>
       </div>
-      <input name="transactionNumber" value={queries.transactionNumber} onChange={e => handleQueryData(e.target.value, e.target.name)} className="border-2 border-purple-500" />
-      <input name="cashierID" value={queries.cashierID} onChange={e => handleQueryData(e.target.value, e.target.name)} className="border-2 border-purple-500" />
-      <input name="customerID" value={queries.customerID} onChange={e => handleQueryData(e.target.value, e.target.name)} className="border-2 border-purple-500" />
-      <DatePicker
-        selected={queries.fromDate}
-        onDateSelected={dayzedData => handleQueryData(dayzedData.date, 'fromDate')}
-        showOutsideDays={true}
-      />
-      <DatePicker
-        selected={queries.toDate}
-        onDateSelected={dayzedData => handleQueryData(dayzedData.date, 'toDate')}
-        showOutsideDays={true}
-      />
-      {
-        (queries.fromDate && queries.toDate) && 
-        <div>
-          <p>from: </p>
-          <p>{queries.fromDate.toLocaleString()}</p>
-          <p>to:</p>
-          <p>{queries.toDate.toLocaleString()}</p>
+      <div className="h-custom-771 w-full flex flex-row">
+        <div id="filters" className="">
+          <input name="transactionNumber" value={queries.transactionNumber} onChange={e => handleQueryData(e.target.value, e.target.name)} className="transition-colors duration-300 bg-purple-50 w-32 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" />
+          <input name="cashierID" value={queries.cashierID} onChange={e => handleQueryData(e.target.value, e.target.name)} className="transition-colors duration-300 bg-purple-50 w-16 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" />
+          <input name="customerID" value={queries.customerID} onChange={e => handleQueryData(e.target.value, e.target.name)} className="transition-colors duration-300 bg-purple-50 w-16 h-10 px-2 border-2 border-opacity-0 focus:outline-none rounded focus:border-purple-400 focus:border-opacity-100 hover:bg-purple-100" />
+          <DatePicker
+            selected={queries.fromDate}
+            onDateSelected={dayzedData => handleQueryData(dayzedData.date, 'fromDate')}
+            showOutsideDays={true}
+          />
+          <DatePicker
+            selected={queries.toDate}
+            onDateSelected={dayzedData => handleQueryData(dayzedData.date, 'toDate')}
+            showOutsideDays={true}
+          />
+          {
+            (queries.fromDate && queries.toDate) && 
+            <div>
+              <p>from: </p>
+              <p>{queries.fromDate.toLocaleString()}</p>
+              <p>to:</p>
+              <p>{queries.toDate.toLocaleString()}</p>
+            </div>
+          }
+          <button onClick={handleSortingSubmit}>
+          Click
+          </button>
         </div>
-      }
-      <button onClick={handleSortingSubmit}>
-      Click
-      </button>
-      {
-        filteredHistories && filteredHistories.map(history => <pre>{JSON.stringify(history, null, 2)}</pre>)
-      }
+        <div id="filtered-data-table" className="">
+          {
+            filteredHistories && filteredHistories.map(history => <pre>{JSON.stringify(history, null, 2)}</pre>)
+          }
+        </div>
+      </div>
     </div>
   );
 }
