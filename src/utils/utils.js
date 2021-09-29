@@ -346,5 +346,5 @@ export const itemNumberByPage = (page, itemIdx, dataLength) => {
 }
 
 export const dateParserWithRegex = date => {
-  return JSON.stringify(date).match(/(\d{4}-\d{2}-\d{2})/g)[ 0 ];
+  return ;
 }

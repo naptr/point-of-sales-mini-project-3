@@ -10,6 +10,9 @@ module.exports = {
       'body': ['"Open Sans"', 'Nunito', 'system-ui', 'sans-serif'],
     },
     extend: {
+      borderWidth: {
+        '1': '1px'
+      },
       boxShadow: {
         'around': 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
       },
