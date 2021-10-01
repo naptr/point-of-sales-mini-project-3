@@ -414,6 +414,10 @@ export const itemNumberByPage = (page, itemIdx, dataLength) => {
   }
 }
 
-export const dateParserWithRegex = date => {
-  return ;
+export const createTotal = details => {
+  let total = 0;
+
+  details.forEach(detail => total += detail.subtotal);
+
+  return total;
 }

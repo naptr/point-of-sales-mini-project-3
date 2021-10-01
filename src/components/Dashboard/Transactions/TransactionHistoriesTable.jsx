@@ -27,9 +27,7 @@ const TransactionHistoriesTable = ({ bodyData, getOrderDetails, getDataLoading }
             </div>
           ) : (
             bodyData?.map(body => (
-              <HistoriesColumnComponent key={body.id  } body={body} getOrderDetails={getOrderDetails} >
-
-              </HistoriesColumnComponent>
+              <HistoriesColumnComponent key={body.id} body={body} getOrderDetails={getOrderDetails} />
             ))
           )
         }

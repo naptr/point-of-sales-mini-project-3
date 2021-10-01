@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDayzed } from 'dayzed';
+import { NextMonthIcon, PreviousMonthIcon } from './Icons';
 
 
 /* Calendar Consts */
@@ -22,29 +23,27 @@ const weekdays = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 
 const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) => {
 
-  // useEffect(() => calendars && console.log(calendars));
-
   return calendars.length ? (
-    <div id="calendar-wrapper" className="max-w-max text-sm p-4 flex flex-col shadow-around rounded-md font-body text-gray-700">
+    <div id="calendar-wrapper" className={`min-w-max text-sm p-4 flex flex-col shadow-around rounded-md font-body text-gray-700 absolute top-12 left-0 bg-white`}>
       {
         calendars.map(calendar => (
           <>
             <div id="calendar-header" className="w-full h-10 flex flex-row items-center">
-              <button id="previous-month" className="h-full w-10 shadow-around rounded-lg hover:bg-purple-100 active:bg-white transition-colors duration-300" {...getBackProps({ calendars })}>
-
+              <button id="previous-month" className="flex items-center justify-center h-8 w-8 shadow-md rounded-lg hover:bg-purple-100 active:bg-white transition-colors duration-200" {...getBackProps({ calendars })}>
+                <PreviousMonthIcon size="24" />
               </button>
               <div id="current-month" className="flex-grow h-full flex items-center justify-center font-semibold subpixel-antialiased	">
                 {months[ calendar.month ]} {calendar.year}
               </div>
-              <button id="next-month" className="h-full w-10 shadow-around rounded-lg hover:bg-purple-100 active:bg-white transition-colors duration-300" {...getForwardProps({ calendars })}>
-
+              <button id="next-month" className="flex items-center justify-center h-8 w-8 shadow-md rounded-lg hover:bg-purple-100 active:bg-white transition-colors duration-200" {...getForwardProps({ calendars })}>
+                <NextMonthIcon size="24" />
               </button>
             </div>
             <div id="calendar-body" className="w-full flex items-center justify-center flex-col">
               <div id="weekday" className="w-full grid grid-cols-7 h-10">
                 {
                   weekdays.map(weekday => (
-                    <div id="day" className="h-10 font-body flex items-center justify-center font-semibold text-gray-400">
+                    <div id="day" className="h-10 w-10 font-body flex items-center justify-center font-semibold text-gray-400">
                       {weekday}
                     </div>
                   ))
@@ -71,7 +70,7 @@ const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) =>
                         day_style = prevMonth || nextMonth ? 'text-gray-400' : day_style;
 
                         return (
-                          <button className={`${day_style} transition-all duration-300 w-10 h-10 font-body flex items-center justify-center font-semibold text-gray-700`} {...getDateProps({ dateObj })}>
+                          <button className={`${day_style} hover:bg-purple-100 hover:rounded-full hover:text-purple-500 transition-all duration-300 w-10 h-10 font-body flex items-center justify-center font-semibold text-gray-700`} {...getDateProps({ dateObj })}>
                             {
                               selectable && date.getDate()
                             }

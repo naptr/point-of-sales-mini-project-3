@@ -30,16 +30,6 @@ const AllHistories = () => {
   }
   /* End of Handlers */
 
-  /* Custom Functions */
-  const createTotal = details => {
-    let total = 0;
-
-    details.forEach(detail => total += detail.subtotal);
-
-    return total;
-  }
-  /* End of Custom Functions */
-
   useEffect(() => console.log(orderDetails), [orderDetails]);
 
   return (
@@ -91,11 +81,11 @@ const AllHistories = () => {
               </div>
             <div id="order-summary" className="h-12 w-full flex flex-row items-center justify-between">
               <p className="text-gray-400 font-semibold">Total </p>
-              <p>
+              <span>
                 {
                   orderDetailsLoading ? <p className="text-purple-500 font-semibold">Loading...</p> : orderDetails ? `Rp${Intl.NumberFormat('id-ID').format(createTotal(orderDetails))},00` : ''
                 }
-              </p>
+              </span>
             </div>
             </div>
           </div>
