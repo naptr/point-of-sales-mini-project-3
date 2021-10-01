@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import ReportsTable from '@app/components/Dashboard/Reports/ReportsTable';
+import TransactionHistoriesTable from '@app/components/Dashboard/Transactions/TransactionHistoriesTable';
 
 import { getOrderHistories, getOrderHistoryDetails } from '@app/api/dashboard_apis';
 
@@ -48,7 +48,7 @@ const AllHistories = () => {
         <h2 className="text-xl font-semibold italic font-caption">Transaction Histories</h2>
       </div>
       <div className="w-full flex flex-row space-x-6">
-        <ReportsTable bodyData={all_histories?.data.data} getOrderDetails={handleOrderDetails} getDataLoading={isLoading} />
+        <TransactionHistoriesTable bodyData={all_histories?.data.data} getOrderDetails={handleOrderDetails} getDataLoading={isLoading} />
         <div id="transaction-details" className="w-1/3 h-custom-708 flex flex-col shadow-md ">
           <div className="w-full h-12 flex items-center justify-center text-purple-500 bg-purple-200 font-semibold shadow-md">
             <p>Order Details</p>

@@ -140,9 +140,9 @@ export const USERS_NAVIGATION_DATA = [
   }
 ]
 
-export const REPORTS_NAVIGATION_DATA = [
+export const TRANSACTION_HISTORIES_NAVIGATION_DATA = [
   {
-    path: `${main_url}/reports/all-histories`,
+    path: `${main_url}/transactions/all-histories`,
     state: {
       id: 1,
       name: 'all-histories',
@@ -154,7 +154,7 @@ export const REPORTS_NAVIGATION_DATA = [
     }
   },
   {
-    path: `${main_url}/reports/histories-with-filter`,
+    path: `${main_url}/transactions/histories-with-filter`,
     state: {
       id: 2,
       name: 'histories-with-filter',
@@ -304,6 +304,8 @@ export const parseURLToTitle = (url) => {
       return 'Staff';
     case 'suppliers':
       return 'Suppliers';
+    case 'transactions':
+      return 'Transactions';
     case 'reports':
       return 'Reports';
     case 'all-histories':

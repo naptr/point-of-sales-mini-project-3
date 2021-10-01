@@ -6,7 +6,7 @@ import Loader from '@app/components/Loader';
 import { transaction_histories_head, createTransactionRowData } from '@app/utils/utils';
 
 
-const ReportsTable = ({ bodyData, getOrderDetails, getDataLoading }) => {
+const TransactionHistoriesTable = ({ bodyData, getOrderDetails, getDataLoading }) => {
 
   return (
     <div className="h-custom-708 flex-grow flex flex-col space-y-1">
@@ -38,7 +38,7 @@ const ReportsTable = ({ bodyData, getOrderDetails, getDataLoading }) => {
   )
 }
 
-export default ReportsTable;
+export default TransactionHistoriesTable;
 
 const HistoriesColumnComponent = ({ body, getOrderDetails }) => {
   const rowData = createTransactionRowData(body);

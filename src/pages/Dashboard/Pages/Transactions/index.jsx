@@ -5,25 +5,25 @@ import AllHistories from './AllHistories';
 import Main from './Main';
 import HistoriesWithFilter from './HistoriesWithFilter';
 
-import ReportsNav from '@app/components/Dashboard/Reports/ReportsNav';
+import TransactionHistoriesNav from '@app/components/Dashboard/Transactions/TransactionHistoriesNav';
 
 
-const Reports = () => {
+const Transactions = () => {
   const location = useLocation();
 
   return (
     <div className="flex-grow flex flex-col max-h-full">
       {
-        (location.pathname.includes('/all-histories') || location.pathname.includes('/histories-with-filter')) && <ReportsNav />
+        (location.pathname.includes('/all-histories') || location.pathname.includes('/histories-with-filter')) && <TransactionHistoriesNav />
       }
       <Switch>
-        <Route path='/dashboard/reports' exact>
+        <Route path='/dashboard/transactions' exact>
           <Main />
         </Route>
-        <Route path='/dashboard/reports/all-histories'>
+        <Route path='/dashboard/transactions/all-histories'>
           <AllHistories />
         </Route>
-        <Route path='/dashboard/reports/histories-with-filter'>
+        <Route path='/dashboard/transactions/histories-with-filter'>
           <HistoriesWithFilter />
         </Route>
       </Switch>
@@ -31,4 +31,4 @@ const Reports = () => {
   );
 }
 
-export default Reports;
+export default Transactions;

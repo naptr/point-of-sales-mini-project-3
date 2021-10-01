@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import { MainIcons } from '@app/components/Icons';
 
-import { REPORTS_NAVIGATION_DATA } from '@app/utils/utils';
+import { TRANSACTION_HISTORIES_NAVIGATION_DATA } from '@app/utils/utils';
 
 
 const Main = () => {
   return (
     <div id="product-data-container" className="w-full flex items-center justify-center flex-row flex-grow space-x-6 h-full">
-      {REPORTS_NAVIGATION_DATA.map(product => <ReportNavigationCard path={product.path} state={product.state} key={product.state.id} />)}
+      {TRANSACTION_HISTORIES_NAVIGATION_DATA.map(product => <ReportNavigationCard path={product.path} state={product.state} key={product.state.id} />)}
     </div>
   );
 }
