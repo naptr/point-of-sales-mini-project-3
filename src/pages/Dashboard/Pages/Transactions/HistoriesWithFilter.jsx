@@ -56,7 +56,7 @@ const HistoriesWithFilter = () => {
     });
   }
 
-  const handleSortingSubmit = async () => {
+  const handleSortingSubmit = async () => { // handling get data with filters
     const queryParams = [];
 
     if (queries.fromDate && queries.toDate) {
@@ -99,23 +99,9 @@ const HistoriesWithFilter = () => {
             onDateSelected={dayzedData => handleQueryData(dayzedData.date, 'toDate')}
             showOutsideDays={true}
           />
-          {
-            (queries.fromDate && queries.toDate) && 
-            <div>
-              <p>from: </p>
-              <p>{queries.fromDate.toLocaleString()}</p>
-              <p>to:</p>
-              <p>{queries.toDate.toLocaleString()}</p>
-            </div>
-          }
-          <button onClick={handleSortingSubmit}>
-          Click
-          </button>
         </div>
         <div id="filtered-data-table" className="">
-          {
-            filteredHistories && filteredHistories.map(history => <pre>{JSON.stringify(history, null, 2)}</pre>)
-          }
+          
         </div>
       </div>
     </div>
