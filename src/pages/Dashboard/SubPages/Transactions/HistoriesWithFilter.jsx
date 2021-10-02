@@ -128,7 +128,7 @@ const HistoriesWithFilter = () => {
       </div>
       <div className="h-custom-771 w-full flex flex-col space-y-2">
         <div id="filters-wrapper" className="max-w-max max-h-12 flex flex-row space-x-4 items-center justify-start">
-          <div className="filters" className="w-full h-full flex flex-row items-start space-x-8">
+          <div id="filters" className="w-full h-full flex flex-row items-start space-x-8">
             <div id="non-date-filters" className="h-12 flex items-center space-x-8 flex-row">
               <div id="transaction-filter" className="h-full flex flex-row items-start space-x-4">
                 <label className="text-sm font-semibold">Transaction Number</label>
