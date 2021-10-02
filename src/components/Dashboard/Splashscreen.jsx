@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import NeatLogo from '@app/components/Logo/NeatLogo';
 

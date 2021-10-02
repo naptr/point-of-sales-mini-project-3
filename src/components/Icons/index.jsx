@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createElement } from 'react';
 
 // Sidebar
 export const Line = ({ name, size, color }) => {
@@ -377,5 +377,127 @@ export const NextMonthIcon = ({ size }) => {
 export const PreviousMonthIcon = ({ size }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}><path fill="none" d="M0 0h24v24H0z" /><path d="M8 12l6-6v12z" fill="#1F2937" /></svg>
+  );
+}
+
+export const DashboardCardIcon = ({ type, size }) => {
+  let iconData = {};
+  switch (type) {
+    case 'total_category':
+      iconData = {
+        bgColor: 'bg-blue-400',
+        icon: createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: "0 0 24 24",
+          width: size,
+          height: size,
+          children: [
+            createElement('path', {
+              fill: 'none',
+              d: "M0 0h24v24H0z"
+            }),
+            createElement('path', {
+              fill: '#fff',
+              d: "M3 13h18v8.002c0 .551-.445.998-.993.998H3.993A.995.995 0 0 1 3 21.002V13zM3 2.998C3 2.447 3.445 2 3.993 2h16.014c.548 0 .993.446.993.998V11H3V2.998zM9 5v2h6V5H9zm0 11v2h6v-2H9z"
+            })
+          ]
+        })
+      }
+      
+      break;
+    case 'total_income':
+      iconData = {
+        bgColor: 'bg-red-400',
+        icon: createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: "0 0 24 24",
+          width: size,
+          height: size,
+          children: [
+            createElement('path', {
+              fill: 'none',
+              d: "M0 0h24v24H0z"
+            }),
+            createElement('path', {
+              fill: '#fff',
+              d: "M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 10v2H8v2h8v-2h-5v-2h3v-2h-3v-1a1.5 1.5 0 0 1 2.76-.815l1.986-.496A3.501 3.501 0 0 0 9 10v1H8v2h1z"
+            })
+          ]
+        })
+      }
+      break;
+    case 'total_new_user_today':
+      iconData = {
+        bgColor: 'bg-green-400',
+        icon: createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: "0 0 24 24",
+          width: size,
+          height: size,
+          children: [
+            createElement('path', {
+              fill: 'none',
+              d: "M0 0h24v24H0z"
+            }), 
+            createElement('path', {
+              fill: '#fff',
+              d: "M14 14.252V22H4a8 8 0 0 1 10-7.748zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm6 4v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"
+            })
+          ]
+        })
+      }
+      break;
+    case 'total_product':
+      iconData = {
+        bgColor: 'bg-yellow-400',
+        icon: createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: "0 0 24 24",
+          width: size,
+          height: size,
+          children: [
+            createElement('path', {
+              fill: 'none',
+              d: "M0 0h24v24H0z"
+            }), 
+            createElement('path', {
+              fill: '#fff',
+              d: "M3 10h18v10.004c0 .55-.445.996-.993.996H3.993A.994.994 0 0 1 3 20.004V10zm6 2v2h6v-2H9zM2 4c0-.552.455-1 .992-1h18.016c.548 0 .992.444.992 1v4H2V4z"
+            })
+          ]
+        })
+      }
+      break;
+    case 'total_supplier':
+      iconData = {
+        bgColor: 'bg-blue-400',
+        icon: createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: "0 0 24 24",
+          width: size,
+          height: size,
+          children: [
+            createElement('path', {
+              fill: 'none',
+              d: "M0 0h24v24H0z"
+            }), 
+            createElement('path', {
+              fill: '#fff',
+              d: "M21 13v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7H2v-2l1-5h18l1 5v2h-1zM5 13v6h14v-6H5zm1 1h8v3H6v-3zM3 3h18v2H3V3z"
+            })
+          ]
+        })
+      }
+      break;
+    default:
+      console.log(type);
+  }
+
+  return (
+    <div id="card-icon" className={`h-12 w-12 rounded-full ${iconData?.bgColor} flex items-center justify-center`}>
+      {
+        iconData?.icon
+      }
+    </div>
   );
 }
