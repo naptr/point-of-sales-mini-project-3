@@ -283,8 +283,42 @@ export const staff_table_head_data = [
   {
     id: 'address',
     textContent: 'Address',
-    classes: "px-4 w-24 flex items-center justify-start"
+    classes: "px-4 flex-grow flex items-center justify-start"
   }
+]
+
+export const users_table_head_data = [
+  {
+    id: 'no',
+    textContent: 'No',
+    classes: "px-4 w-12 flex items-center justify-start"
+  },
+  {
+    id: 'name',
+    textContent: 'Name',
+    classes: "px-4 w-80 flex items-center justify-start"
+  },
+  {
+    id: 'username',
+    textContent: 'Username',
+    classes: "px-4 w-56 flex items-center justify-start"
+  },
+  {
+    id: 'email',
+    textContent: 'Email',
+    classes: "px-4 w-80 flex items-center justify-start"
+  },
+  {
+    id: 'nohp',
+    textContent: 'Phone',
+    classes: "px-4 w-48 flex items-center justify-start"
+  },
+  {
+    id: 'address',
+    textContent: 'Address',
+    classes: "px-4 flex-grow flex items-center justify-start"
+  },
+  
 ]
 
 /**
@@ -499,7 +533,48 @@ export const createStaffRowData = (data, idx) => {
     {
       id: 'address',
       child: data.address,
-      classes: "px-4 w-24 flex items-center justify-start"
+      classes: "px-4 flex-grow flex items-center justify-start"
+    }
+  ]
+}
+
+export const createUsersRowData = (data, idx) => {
+  return [
+    {
+      id: 'no',
+      child: idx + 1,
+      classes: "px-4 w-12 flex items-center justify-center"
+    },
+    {
+      id: 'name',
+      child: [
+        createElement('span', { children: `${data.firstName} ${data.lastName}` }),
+        createElement('div', {
+          className: 'border-2 border-purple-500 rounded px-1 flex items-center justify-center',
+          children: createElement('span', { className: "text-sm font-semibold text-purple-500", children: data.role })
+        })
+      ] ,
+      classes: "px-4 w-80 flex flex-row justify-between items-center justify-start"
+    },
+    {
+      id: 'username',
+      child: data.username,
+      classes: "px-4 w-56 flex items-center justify-start"
+    },
+    {
+      id: 'email',
+      child: data.email,
+      classes: "px-4 w-80 flex items-center justify-start"
+    },
+    {
+      id: 'nohp',
+      child: data.nohp,
+      classes: "px-4 w-48 flex items-center justify-start"
+    },
+    {
+      id: 'address',
+      child: data.address,
+      classes: "px-4 flex-grow flex items-center justify-start"
     }
   ]
 }
