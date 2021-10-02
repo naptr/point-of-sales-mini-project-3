@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // import NeatLogo from '@app/components/Logo/NeatLogo';
 import Sidebar from '@app/components/Dashboard/Sidebar';
@@ -7,12 +7,12 @@ import Splashscreen from '@app/components/Dashboard/Splashscreen';
 import Topbar from '@app/components/Dashboard/Topbar';
 
 import MainDashboard from './MainDashboard';
-import ProductData from './Pages/ProductData';
-import UserData from './Pages/UserData';
-import Settings from './Pages/Setting';
-import Transactions from './Pages/Transactions';
-import Search from './Pages/Search';
-import Reports from './Pages/Reports';
+import ProductData from './SubPages/ProductData';
+import UserData from './SubPages/UserData';
+import Settings from './SubPages/Setting';
+import Transactions from './SubPages/Transactions';
+import Search from './SubPages/Search';
+import Reports from './SubPages/Reports';
 
 // import { REM } from '@app/utils/utils';
 
