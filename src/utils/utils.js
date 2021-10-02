@@ -54,20 +54,20 @@ export const sidebarItem = [
       textContent: 'Transactions',
     }
   },
-  {
-    path: `${main_url}/reports`,
-    singlePath: '/reports',
-    state: {
-      id: 6,
-      name: 'reports',
-      textContent: 'Reports',
-    }
-  }, 
+  // {
+  //   path: `${main_url}/reports`,
+  //   singlePath: '/reports',
+  //   state: {
+  //     id: 6,
+  //     name: 'reports',
+  //     textContent: 'Reports',
+  //   }
+  // }, 
   {
     path: `${main_url}/settings`,
     singlePath: '/settings',
     state: {
-      id: 7,
+      id: 6,
       name: 'settings',
       textContent: 'Settings'
     }

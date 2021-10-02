@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { NeatLeaf } from '@app/components/Logo/NeatLogo';
-import { Line, Fill, ExpandSidebarIcon, SettingsIcon } from '@app/components/Icons';
+import { Line, Fill, ExpandSidebarIcon } from '@app/components/Icons';
 
 import { REM, sidebarItem } from '@app/utils/utils';
 
