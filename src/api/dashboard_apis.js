@@ -7,6 +7,8 @@ const categories_URL = '/categories';
 const single_category_URL = '/category';
 const suppliers_URL = '/suppliers';
 const single_supplier_URL = '/supplier';
+const staff_URL = '/admin/staff';
+const customers_URL = '/customers';
 const histories_URL = '/check-out/histories';
 
 
@@ -41,6 +43,20 @@ export const getSuppliers = async () => {
   const suppliers = await dashboard.get(suppliers_URL);
 
   return suppliers;
+}
+
+// Staff
+export const getStaffAll = async () => {
+  const staff = await dashboard.get(staff_URL);
+
+  return staff;
+}
+
+// Users
+export const getUsersAll = async () => {
+  const users = await dashboard.get(customers_URL);
+
+  return users;
 }
 
 // Categories

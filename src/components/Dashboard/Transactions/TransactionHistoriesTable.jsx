@@ -33,7 +33,7 @@ const TransactionHistoriesTable = ({ bodyData, getOrderDetails, getDataLoading }
         }
       </div>
     </div>
-  )
+  );
 }
 
 export default TransactionHistoriesTable;

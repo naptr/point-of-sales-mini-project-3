@@ -249,6 +249,44 @@ export const transaction_histories_head = [
   }
 ]
 
+export const staff_table_head_data = [
+  {
+    id: 'no',
+    textContent: 'No',
+    classes: "px-4 w-12 flex items-center justify-center"
+  },
+  {
+    id: 'name',
+    textContent: 'Name',
+    classes: "px-4 w-64 flex items-center justify-start"
+  },
+  {
+    id: 'username',
+    textContent: 'Username',
+    classes: "px-4 w-36 flex items-center justify-start"
+  },
+  {
+    id: 'role',
+    textContent: 'Role',
+    classes: "px-4 w-36 flex items-center justify-center"
+  },
+  {
+    id: 'email',
+    textContent: 'Email',
+    classes: "px-4 w-80 flex items-center justify-start"
+  },
+  {
+    id: 'nohp',
+    textContent: 'Phone',
+    classes: "px-4 w-48 flex items-center justify-start"
+  },
+  {
+    id: 'address',
+    textContent: 'Address',
+    classes: "px-4 w-24 flex items-center justify-start"
+  }
+]
+
 /**
  * Functions Utils
  */
@@ -406,6 +444,66 @@ export const createTransactionRowData = data => {
   ]
 }
 
+export const createStaffRowData = (data, idx) => {
+  return [
+    {
+      id: 'no',
+      child: idx+1,
+      classes: "px-4 w-12 flex items-center justify-center"
+    },
+    {
+      id: 'name',
+      child: [
+        createElement('span', {children: `${data.firstName} ${data.lastName}`}),
+        ( 
+          data.email_verified_at != null ? 
+          createElement('div', { 
+            className: "h-3.5 w-3.5 rounded-full flex items-center justify-center bg-purple-500",
+            children: createElement('svg', {
+              xmlns: 'http://www.w3.org/2000/svg',
+              viewBox: "0 0 24 24",
+              width: '10px',
+              height: '10px',
+              children: [
+                createElement('path', { fill: 'none', d: "M0 0h24v24H0z" }),
+                createElement('path', { d: "M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z", fill: "#fff" })
+              ]
+            })
+          }) : null 
+        )],
+      classes: "px-4 w-64 flex flex-row space-x-1 items-center justify-start"
+    },
+    {
+      id: 'username',
+      child: data.username,
+      classes: "px-4 w-36 flex items-center justify-start"
+    },
+    {
+      id: 'role',
+      child: createElement('div', {
+        className: `h-full w-16 font-semibold py-0.5 flex items-center justify-center text-sm border-2 ${data.role == 'admin' ? 'bg-green-100 border-green-400 text-green-400' : data.role == 'kasir' ? 'bg-yellow-100 border-yellow-400  text-yellow-400' : data.role == 'manager' ? 'bg-red-100 border-red-400  text-red-400' : ''} rounded`,
+        children: data.role
+      }),
+      classes: "px-4 w-36 flex items-center justify-center"
+    },
+    {
+      id: 'email',
+      child: data.email,
+      classes: "px-4 w-80 flex items-center justify-start"
+    },
+    {
+      id: 'nohp',
+      child: data.nohp,
+      classes: "px-4 w-48 flex items-center justify-start"
+    },
+    {
+      id: 'address',
+      child: data.address,
+      classes: "px-4 w-24 flex items-center justify-start"
+    }
+  ]
+}
+
 export const itemNumberByPage = (page, itemIdx, dataLength) => {
   if (dataLength < 10 && page == 1) {
     return itemIdx + 1
@@ -420,4 +518,4 @@ export const createTotal = details => {
   details.forEach(detail => total += detail.subtotal);
 
   return total;
-}
+} 
