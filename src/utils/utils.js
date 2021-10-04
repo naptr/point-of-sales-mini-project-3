@@ -1,4 +1,4 @@
-import { store } from '@app/utils/state-management/proxy';
+import { store } from './state-management/proxy';
 import { createElement } from 'react';
 
 

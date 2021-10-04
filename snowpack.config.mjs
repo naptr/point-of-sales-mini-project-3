@@ -5,9 +5,15 @@ export default {
     src: '/dist',
   },
   plugins: [
+    '@snowpack/plugin-webpack',
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
-    '@snowpack/plugin-postcss'
+    '@snowpack/plugin-postcss',
+    [ "snowpack-resolve-alias", {
+      "extension": [ ".js", ".jsx" ],
+      "devPath": "src",
+      "noWarning": true
+    } ],
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
