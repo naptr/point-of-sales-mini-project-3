@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, Link } from 'react-router-dom';
-// import { useSnapshot } from 'valtio';
-import { useMutation } from 'react-query';
+import React, { useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 
 import NeatLogo from '@app/components/Logo/NeatLogo';
 import Loader from '@app/components/Loader';

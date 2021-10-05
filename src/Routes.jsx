@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Dashboard from '@app/pages/Dashboard';
 import Login from '@app/pages/Login';
@@ -10,7 +10,7 @@ import { isLogin } from '@app/utils/auth-utils';
 
 
 const Base = ({ loggedIn }) => {
-  return <Redirect to={`${isLogin(loggedIn) ? '/dashboard' : '/login'}`} />
+  return ( <Redirect to={`${isLogin(loggedIn) ? '/dashboard' : '/login'}`} /> )
 }
 
 const Routes = ({ loggedIn }) => {

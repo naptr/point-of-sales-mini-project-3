@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 import { getDashboardData } from '@app/api/dashboard_apis';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 import UserDataNav from '@app/components/Dashboard/UserData/UserDataNav';
 
 import Main from './Main';

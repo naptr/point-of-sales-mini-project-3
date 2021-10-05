@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { EditIcon, DeleteIcon } from '@app/components/Icons';
@@ -47,8 +46,6 @@ const ActionsButton = ({ actionsAppear, edit, item, setLoading, setActionsAppear
       queryClient.invalidateQueries('categories');
     }
   })
-
-  // mutation.isLoading && setLoading(true);
 
   /* Handlers */
   const handleEditCategory = () => {

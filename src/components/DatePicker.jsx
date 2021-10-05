@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDayzed } from 'dayzed';
 import { NextMonthIcon, PreviousMonthIcon } from './Icons';
 
@@ -56,11 +56,7 @@ const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) =>
                     {
                       week.map(dateObj => {
                         if (!dateObj) {
-                          return (
-                            <div className="">
-
-                            </div>
-                          )
+                          return ( <div></div> );
                         }
 
                         const { date, selected, selectable, today, prevMonth, nextMonth } = dateObj;
@@ -93,7 +89,7 @@ const Calendar = ({ calendars, getBackProps, getForwardProps, getDateProps }) =>
 const DatePicker = props => {
   const dayzedData = useDayzed(props);
 
-  return <Calendar {...dayzedData} />;
+  return ( <Calendar {...dayzedData} /> );
 }
 
 export default DatePicker;

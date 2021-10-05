@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'; 
-import { useMutation, useQuery } from 'react-query';
+import React, { useRef, useState } from 'react';
 
 import DatePicker from '@app/components/DatePicker';
 import { DatePickerIcon } from '@app/components/Icons';
@@ -38,8 +37,6 @@ const formatDateToServerAcceptable = date => {
 }
 
 const HistoriesWithFilter = () => {
-  const fromDateButtonRef = useRef(null);
-  const toDateButtonRef = useRef(null);
 
   const [filteredHistories, setFilteredHistories] = useState([]);
   const [filteredHistoriesLoading, setFilteredHistoriesLoading] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import Main from './Main';
 import Products from './Products';

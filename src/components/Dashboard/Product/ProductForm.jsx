@@ -50,7 +50,6 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   /* End of Queries */
 
   /* Functions */
-
   // Request function
   const getCurrentProductDetails = async () => {
     setProductDetailsLoading(true);
@@ -152,7 +151,6 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
         ...productDetails,
         image: {
           media: ev.target.files[0],
-          // name: ev.target.files[0].name,
         }
       });
     }
@@ -166,7 +164,6 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
       ...productDetails,
       [field]: ev.target.value
     })
-    // console.log(field, ev.target.value);
   }
 
   // dropdown handler
@@ -210,16 +207,12 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
   /* End of Event Listener */
 
   /* React lifecycles */
-  // on both mode
-  // useEffect(() => result && console.log(result), [result]); // debug
 
   // on edit mode
   useEffect(() => editMode.mode && getCurrentProductDetails(), []);
   useEffect(() => !editMode.mode && setProductDetailsLoading(false), []);
-  useEffect(() => editMode.mode && console.log(productDetails), [productDetails]); // debug
 
   // on create mode
-  // useEffect(() => console.log(productDetails), [productDetails]); // debug
 
   return (
     <div id="form-wrapper" className="h-full w-full flex items-center justify-center space-y-8 flex-col ">
@@ -234,7 +227,6 @@ const ProductForm = ({ editMode, createMode, closeForm }) => {
             <h1 className="text-2xl font-caption text-gray-800">{ editMode.mode ? 'Edit' : createMode ? 'Create' : 'null' } Product</h1>
             <form onSubmit={handleSumbitProduct} className="w-2/5 shadow-md rounded flex flex-row p-8 space-x-4">
               <div id="left-form" className="h-full w-64 flex items-start flex-col space-y-2">
-                {/* <img src={productDetails.image} className="w-full h-64 object-cover appearance-none" /> */}
                 <div id="image-wrapper" className="h-64 w-full flex items-center shadow-md">
                   <picture className="h-full w-full">
                       <img src={typeof productDetails.image.media === 'string' ? productDetails.image.media : (productDetails.image.media ? parseToURL(productDetails.image.media) : '/default_user.png')} className="h-full w-full object-cover" />
@@ -303,7 +295,6 @@ const LocalDropdown = ({ items, setDropdownValue, dropdownFor, closeDropdown }) 
   const handleValueSelection = (item) => {
     setDropdownValue(item.id, item[`${dropdownFor}_name`], dropdownFor);
     closeDropdown();
-    // console.log(item);
   }
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { BackIcon } from '@app/components/Icons';
 import BreadCrumbsURL from '@app/components/Dashboard/BreadCrumbsURL';
 
 import { createBreadcrumbsURL, parseURLToTitle } from '@app/utils/utils';

@@ -54,15 +54,6 @@ export const sidebarItem = [
       textContent: 'Transactions',
     }
   },
-  // {
-  //   path: `${main_url}/reports`,
-  //   singlePath: '/reports',
-  //   state: {
-  //     id: 6,
-  //     name: 'reports',
-  //     textContent: 'Reports',
-  //   }
-  // }, 
   {
     path: `${main_url}/settings`,
     singlePath: '/settings',
@@ -330,7 +321,7 @@ export function returnObjectKey(state, idx) {
 
 /**
  * Sidebar
- *  */
+ */
 
 export const matchUrl = (url) => {
   let displayTitle = '';
@@ -387,7 +378,6 @@ export const parseURLToTitle = (url) => {
     default:
       throw new Error('None of above condition is choosen');
   }
-  // console.log(url)
 }
 
 export const setProductsItemList = (item, idx) => {

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 import BreadCrumbsURL from '@app/components/Dashboard/BreadCrumbsURL';
-import { BackIcon } from '@app/components/Icons';
 
 import { createBreadcrumbsURL, parseURLToTitle } from '@app/utils/utils';
 

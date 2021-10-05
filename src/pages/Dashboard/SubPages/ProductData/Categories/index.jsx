@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Card from '@app/components/Dashboard/Category/Card';
@@ -18,9 +17,6 @@ const Categories = () => {
   const {
     data: categories,
     isLoading,
-    isFetching,
-    isSuccess,
-    error
   } = useQuery('categories', getCategories, {
     refetchOnWindowFocus: false
   });
@@ -83,7 +79,6 @@ const Categories = () => {
           <PreviousPageIcon size="20" />
         </button>
         <div className="transition-all duration-300 w-8 flex items-center justify-center text-purple-500 font-semibold">
-          {/* <p>{page}</p> */}
         </div>
         <button className="disabled:opacity-50 transition-all duration-300 w-8 flex items-center justify-center hover:bg-purple-300">
           <NextPageIcon size="20" />

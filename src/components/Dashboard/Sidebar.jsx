@@ -10,12 +10,7 @@ import { REM, sidebarItem } from '@app/utils/utils';
 const Sidebar = () => {
   const sidebarRef = useRef(null);
   const componentLocation = useLocation();
-  const [data, setData] = useState(null);
   const [openSidebar, setOpenSidebar] = useState(false);
-
-  const handleRefData = (data) => {
-    setData(data);
-  }
 
   const handleSidebarHover = () => {
     setOpenSidebar(!openSidebar)
@@ -33,7 +28,7 @@ const Sidebar = () => {
           <div id="items" className="w-full flex-grow h-full">
             <ul className="flex flex-col items-center space-y-6">
               {sidebarItem.map((item) => (
-                <SidebarItem key={item.state.id} item={item} size={1.75 * REM} color="#8B5CF6" active={componentLocation.pathname.includes(item.singlePath)} hover={handleRefData} sidebarOpen={openSidebar} />
+                <SidebarItem key={item.state.id} item={item} size={1.75 * REM} color="#8B5CF6" active={componentLocation.pathname.includes(item.singlePath)} sidebarOpen={openSidebar} />
               ))}
             </ul>
           </div>
@@ -51,16 +46,14 @@ const Sidebar = () => {
 export default Sidebar;
 
 
-const SidebarItem = ({ item, size, color, active, hover, sidebarOpen }) => {
+const SidebarItem = ({ item, size, color, active, sidebarOpen }) => {
   const itemRef = useRef(null);
   const [ hovered, setHovered ] = useState(false);
 
   const handleMouseEnterAndLeave = () => {
     if (!hovered) {
-      hover(itemRef);
       setHovered(true);
     } else {
-      hover(null);
       setHovered(false);
     }
   }

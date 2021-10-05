@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-// import NeatLogo from '@app/components/Logo/NeatLogo';
 import Sidebar from '@app/components/Dashboard/Sidebar';
 import Splashscreen from '@app/components/Dashboard/Splashscreen';
 import Topbar from '@app/components/Dashboard/Topbar';
@@ -14,7 +13,6 @@ import Transactions from './SubPages/Transactions';
 import Search from './SubPages/Search';
 import Reports from './SubPages/Reports';
 
-// import { REM } from '@app/utils/utils';
 
 
 const Dashboard = () => {
