@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import TransactionHistoriesTable from '@app/components/Dashboard/Transactions/TransactionHistoriesTable';
 
 import { getOrderHistories, getOrderHistoryDetails } from '@app/api/dashboard_apis';
+import { createTotal } from '@app/utils/utils';
 
 
 const AllHistories = () => {
